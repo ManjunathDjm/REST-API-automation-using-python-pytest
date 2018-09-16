@@ -10,4 +10,9 @@ Prerequisite
 6.install json (pip install jsonlib)
 7.install unittests (pip install unittest2)
 
+Test Data
+-----------
+
+All the test data is getting fetched for Environment.ini and Environment.py file
+
 
