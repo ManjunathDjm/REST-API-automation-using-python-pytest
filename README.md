@@ -1,4 +1,4 @@
-# REST-API-automatio-using-python-pytest
+# REST-API-automation-using-python-pytest
 
 Prerequisite 
 
