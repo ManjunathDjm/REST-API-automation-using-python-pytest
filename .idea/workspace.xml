@@ -1,0 +1,1316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="115841bd-cc8e-4990-afd0-53961d3350ff" name="Default Changelist" comment="Covered test cases for FB ProfileSettings,Register,Login">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pytest_cache/.pytest_cache/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pytest_cache/.pytest_cache/v/cache/nodeids" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pytest_cache/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pytest_cache/v/cache/lastfailed" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pytest_cache/v/cache/nodeids" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Environment.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Environment.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EnvironmentRead.py" beforeDir="false" afterPath="$PROJECT_DIR$/EnvironmentRead.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Run.py" beforeDir="false" afterPath="$PROJECT_DIR$/Run_positive.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/device.json" beforeDir="false" afterPath="$PROJECT_DIR$/device.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/otp.json" beforeDir="false" afterPath="$PROJECT_DIR$/otp.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/responsedata.json" beforeDir="false" afterPath="$PROJECT_DIR$/responsedata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/saveyraapi" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_Configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_Configuration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_Contactus.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_Contactus.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_Facebook_Login.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_Facebook_Login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_Facebook_Registration_Mobile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_Facebook_Userprofile_GET.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_Facebook_Userprofile_GET_Mobile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_Facebook_Userprofile_PUT.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_Facebook_Userprofile_PUT_Mobile.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_Feedback.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_Feedback.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_Filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_Filters.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_Keyboardhomescreen.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_Keyboardhomescreen.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_Login.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_Login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_NotificationpreferencesGET.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_NotificationpreferencesGET.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_NotificationpreferencesPUT.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_NotificationpreferencesPUT.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_ReadOTP.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_ReadOTP.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_Refreshtoken.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_Refreshtoken.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_Registration.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_Registration.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_ResendOTP.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_ResendOTP.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_Search.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_Search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_SearchAsyncCall.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_SearchAsyncCall.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_Usercreate.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_Usercreate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_UserprofilePUT.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_UserprofilePUT.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_UsersettingsGET.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_UsersettingsGET.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_UsersettingsPOST.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_UsersettingsPOST.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_VerifyOTP.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_VerifyOTP.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_usersprofileGET.py" beforeDir="false" afterPath="$PROJECT_DIR$/test_usersprofileGET.py" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.idea/httpRequests/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_notificationpreferencesPUT_py.coverage" NAME="pytest in test_notificationpreferencesPUT.py Coverage Results" MODIFIED="1536213797990" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_UsersettingsPOST_py.coverage" NAME="pytest in test_UsersettingsPOST.py Coverage Results" MODIFIED="1536734560036" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveryaAPI$pytest_in_test_feedback_py.coverage" NAME="pytest in test_feedback.py Coverage Results" MODIFIED="1534851579755" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_keyboardhomescreen_py.coverage" NAME="pytest in test_keyboardhomescreen.py Coverage Results" MODIFIED="1536218896073" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_Usercreate_py.coverage" NAME="pytest in test_Usercreate.py Coverage Results" MODIFIED="1536734677955" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_Facebook_Userprofile_PUT_Mobile_py.coverage" NAME="pytest in test_Facebook_Userprofile_PUT_Mobile.py Coverage Results" MODIFIED="1536663972788" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$facebook_token__1_.coverage" NAME="facebook_token (1) Coverage Results" MODIFIED="1536731148173" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveryaAPI$pytest_in_test_contactus_py.coverage" NAME="pytest in test_contactus.py Coverage Results" MODIFIED="1534851821825" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveryaAPI$pytest_in_test_configuration_py.coverage" NAME="pytest in test_configuration.py Coverage Results" MODIFIED="1534856855760" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_for_test_SearchAsyncCall.coverage" NAME="pytest for test_SearchAsyncCall Coverage Results" MODIFIED="1536313533166" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveryaAPI$pytest_for_test_registration_Registration_test_Registration.coverage" NAME="pytest for test_registration.Registration.test_Registration Coverage Results" MODIFIED="1534826470967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test4_resendOTP_py.coverage" NAME="pytest in test4_resendOTP.py Coverage Results" MODIFIED="1536210987340" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_Facebook_Userprofile_PUT_py.coverage" NAME="pytest in test_Facebook_Userprofile_PUT.py Coverage Results" MODIFIED="1536663375785" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveryaAPI$pytest_in_test_filters_py.coverage" NAME="pytest in test_filters.py Coverage Results" MODIFIED="1534856036969" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveryaAPI$pytest_in_test_notificationpreferences_py.coverage" NAME="pytest in test_notificationpreferences.py Coverage Results" MODIFIED="1534849000877" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_search_py.coverage" NAME="pytest in test_search.py Coverage Results" MODIFIED="1536257867844" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveryaAPI$pytest_in_SaveryaAPI.coverage" NAME="pytest in SaveryaAPI Coverage Results" MODIFIED="1534920194462" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveryaAPI$pytest_in_test_usersettingsGETlat_py.coverage" NAME="pytest in test_usersettingsGETlat.py Coverage Results" MODIFIED="1534857611255" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_SaveyraAPI.coverage" NAME="pytest in SaveyraAPI Coverage Results" MODIFIED="1536737795292" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveryaAPI$pytest_in_test_notificationpreferencesGET_py.coverage" NAME="pytest in test_notificationpreferencesGET.py Coverage Results" MODIFIED="1534919375089" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_GenerateRamdomDeviceIds_py.coverage" NAME="pytest in test_GenerateRamdomDeviceIds.py Coverage Results" MODIFIED="1536310553456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_FbRegistration_py.coverage" NAME="pytest in test_FbRegistration.py Coverage Results" MODIFIED="1535094264866" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveryaAPI$pytest_in_test_keyboardhomescreen_py.coverage" NAME="pytest in test_keyboardhomescreen.py Coverage Results" MODIFIED="1534853311847" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_searchAsyncCall_py.coverage" NAME="pytest in test_searchAsyncCall.py Coverage Results" MODIFIED="1536218655014" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_run_py.coverage" NAME="pytest in run.py Coverage Results" MODIFIED="1536386733855" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_for_test_usersettingsGETlat_UserSettingsGetLat.coverage" NAME="pytest for test_usersettingsGETlat.UserSettingsGetLat Coverage Results" MODIFIED="1535346350985" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_FbUserprofilePUT_py.coverage" NAME="pytest in test_FbUserprofilePUT.py Coverage Results" MODIFIED="1536214314150" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test2_registration_py.coverage" NAME="pytest in test_registration.py Coverage Results" MODIFIED="1536213128753" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_for_test_verifyOTP_verifOTP_test_positive_verifyOTP.coverage" NAME="pytest for test_verifyOTP.verifOTP.test_positive_verifyOTP Coverage Results" MODIFIED="1536128081843" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_FbUserprofileGET_py.coverage" NAME="pytest in test_FbUserprofileGET.py Coverage Results" MODIFIED="1536218741750" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_Search_py.coverage" NAME="pytest in test_Search.py Coverage Results" MODIFIED="1536335012581" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveryaAPI$pytest_in_test_usersettingsPOST_py.coverage" NAME="pytest in test_usersettingsPOST.py Coverage Results" MODIFIED="1534857561972" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$Run.coverage" NAME="Run Coverage Results" MODIFIED="1536400041895" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$test.coverage" NAME="test Coverage Results" MODIFIED="1536310594454" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_FBRegistration_py.coverage" NAME="pytest in test_FBRegistration.py Coverage Results" MODIFIED="1536314333219" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_config_py.coverage" NAME="pytest in test_config.py Coverage Results" MODIFIED="1535437954229" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_Facebook_UserprofileGET_py.coverage" NAME="pytest in test_Facebook_UserprofileGET.py Coverage Results" MODIFIED="1536662080061" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_resendOTP_py.coverage" NAME="pytest in test_resendOTP.py Coverage Results" MODIFIED="1536304946435" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test3_verifyOTP_py.coverage" NAME="pytest in test_verifyOTP.py Coverage Results" MODIFIED="1536213142660" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveryaAPI$pytest_in_test_search_py.coverage" NAME="pytest in test_search.py Coverage Results" MODIFIED="1534853966942" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveryaAPI$pytest_in_test_refreshtoken_py.coverage" NAME="pytest in test_refreshtoken.py Coverage Results" MODIFIED="1534848506492" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_random_py.coverage" NAME="pytest in test_random.py Coverage Results" MODIFIED="1536316921641" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_SearchAsyncCall_py.coverage" NAME="pytest in test_SearchAsyncCall.py Coverage Results" MODIFIED="1536313998349" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveryaAPI$pytest_in_test_searchAsyncCall_py.coverage" NAME="pytest in test_searchAsyncCall.py Coverage Results" MODIFIED="1534855715671" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_login_py.coverage" NAME="pytest in test_login.py Coverage Results" MODIFIED="1536214022524" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_ReadOTP_py.coverage" NAME="pytest in test_ReadOTP.py Coverage Results" MODIFIED="1536734798835" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_Facebook_Userprofile_GET_Mobile_py.coverage" NAME="pytest in test_Facebook_Userprofile_GET_Mobile.py Coverage Results" MODIFIED="1536663983253" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveryaAPI$pytest_in_test_verifyOTP_py.coverage" NAME="pytest in test_verifyOTP.py Coverage Results" MODIFIED="1534919176221" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_UsersprofileGET_py.coverage" NAME="pytest in test_UsersprofileGET.py Coverage Results" MODIFIED="1536336192112" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_Facebook_UserprofilePUT_py.coverage" NAME="pytest in test_Facebook_UserprofilePUT.py Coverage Results" MODIFIED="1536661659132" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in__pytest_cache.coverage" NAME="pytest in .pytest_cache Coverage Results" MODIFIED="1534922326358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.pytest_cache" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_FBLogin_py.coverage" NAME="pytest in test_FBLogin.py Coverage Results" MODIFIED="1536314281110" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_for_test_registration_Registration_test_positive_Registration.coverage" NAME="pytest for test_registration.Registration.test_positive_Registration Coverage Results" MODIFIED="1536047294456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_NotificationpreferencesGET_py.coverage" NAME="pytest in test_NotificationpreferencesGET.py Coverage Results" MODIFIED="1536660281641" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_Facebook_Userprofile_GET_py.coverage" NAME="pytest in test_Facebook_Userprofile_GET.py Coverage Results" MODIFIED="1536687963483" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$EnvironmentRead.coverage" NAME="EnvironmentRead Coverage Results" MODIFIED="1536737790170" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$testrandom.coverage" NAME="testrandom Coverage Results" MODIFIED="1536315905677" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveryaAPI$pytest_in_test_login_py.coverage" NAME="pytest in test_login.py Coverage Results" MODIFIED="1534848618950" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_for_test_usersprofileGET.coverage" NAME="pytest for test_usersprofileGET Coverage Results" MODIFIED="1536664338557" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_filters_py.coverage" NAME="pytest in test_filters.py Coverage Results" MODIFIED="1536214175541" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_FBRegistrationMobile_py.coverage" NAME="pytest in test_FBRegistrationMobile.py Coverage Results" MODIFIED="1536315029605" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_facebook_token_py.coverage" NAME="pytest in test_facebook_token.py Coverage Results" MODIFIED="1536689003938" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_feedback_py.coverage" NAME="pytest in test_feedback.py Coverage Results" MODIFIED="1536214241439" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_refreshtoken_py.coverage" NAME="pytest in test_refreshtoken.py Coverage Results" MODIFIED="1536217482728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_Registration_py.coverage" NAME="pytest in test_Registration.py Coverage Results" MODIFIED="1536400079921" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_SaveryaAPI.coverage" NAME="pytest in SaveryaAPI Coverage Results" MODIFIED="1535389568220" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_userprofilePUT_py.coverage" NAME="pytest in test_userprofilePUT.py Coverage Results" MODIFIED="1536220555665" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveryaAPI$pytest_in_test_usersettingsGET_py.coverage" NAME="pytest in test_usersettingsGET.py Coverage Results" MODIFIED="1534847700968" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_ReadOTP_py.coverage" NAME="pytest in ReadOTP.py Coverage Results" MODIFIED="1536224589527" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_Facebook_Login_py.coverage" NAME="pytest in test_Facebook_Login.py Coverage Results" MODIFIED="1536663575426" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveryaAPI$pytest_in_test_usercreate_py.coverage" NAME="pytest in test_usercreate.py Coverage Results" MODIFIED="1534918383920" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveryaAPI$pytest_in_test_Registration_py.coverage" NAME="pytest in test_registration.py Coverage Results" MODIFIED="1534602350308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_FBUserprofilePUTmobile_py.coverage" NAME="pytest in test_FBUserprofilePUTmobile.py Coverage Results" MODIFIED="1536316253145" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_usersprofileGET_py.coverage" NAME="pytest in test_usersprofileGET.py Coverage Results" MODIFIED="1536734504955" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$propertiesRead.coverage" NAME="propertiesRead Coverage Results" MODIFIED="1536044843531" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_configuration_py.coverage" NAME="pytest in test_configuration.py Coverage Results" MODIFIED="1536298502944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$config.coverage" NAME="config Coverage Results" MODIFIED="1535438278941" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_FBUserprofileGETmobile_py.coverage" NAME="pytest in test_FBUserprofileGETmobile.py Coverage Results" MODIFIED="1536315199299" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_VerifyOTP_py.coverage" NAME="pytest in test_VerifyOTP.py Coverage Results" MODIFIED="1536734467777" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveryaAPI$pytest_in_test_registration_py.coverage" NAME="pytest in test_registration.py Coverage Results" MODIFIED="1534828059646" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_contactus_py.coverage" NAME="pytest in test_contactus.py Coverage Results" MODIFIED="1536256094712" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_for_test_FBRegistration_FBRegister_test_negetive2_Withoutchannel.coverage" NAME="pytest for test_FBRegistration.FBRegister.test_negetive2_Withoutchannel Coverage Results" MODIFIED="1535097447420" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_Filters_py.coverage" NAME="pytest in test_Filters.py Coverage Results" MODIFIED="1536734913478" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_notificationpreferencesGET_py.coverage" NAME="pytest in test_notificationpreferencesGET.py Coverage Results" MODIFIED="1536213945687" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_UsersettingsGET_py.coverage" NAME="pytest in test_UsersettingsGET.py Coverage Results" MODIFIED="1536734620420" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_registration_py.coverage" NAME="pytest in test_registration.py Coverage Results" MODIFIED="1536297076528" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_usersettingsPOST_py.coverage" NAME="pytest in test_usersettingsPOST.py Coverage Results" MODIFIED="1536217417916" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_Login_py.coverage" NAME="pytest in test_Login.py Coverage Results" MODIFIED="1536388754028" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_Run_py.coverage" NAME="pytest in Run.py Coverage Results" MODIFIED="1536736152747" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_FBUserprofileGET_py.coverage" NAME="pytest in test_FBUserprofileGETfb.py Coverage Results" MODIFIED="1536314914058" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_usersettingsGETlat_py.coverage" NAME="pytest in test_usersettingsGETlat.py Coverage Results" MODIFIED="1536216270751" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test1_usercreate_py.coverage" NAME="pytest in test_usercreate.py Coverage Results" MODIFIED="1536213117594" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveryaAPI$pytest_in_test_notificationpreferencesPUT_py.coverage" NAME="pytest in test_notificationpreferencesPUT.py Coverage Results" MODIFIED="1534849894546" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveryaAPI$pytest_in_test_resendOTP_py.coverage" NAME="pytest in test_resendOTP.py Coverage Results" MODIFIED="1534838827380" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_usercreate_py.coverage" NAME="pytest in test_usercreate.py Coverage Results" MODIFIED="1536303227417" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_for_test_usercreate_UserCreate.coverage" NAME="pytest for test_usercreate.UserCreate Coverage Results" MODIFIED="1536051610111" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveryaAPI$pytest_in_test_user_py.coverage" NAME="pytest in test_user.py Coverage Results" MODIFIED="1534589633001" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_Facebook_Registration_py.coverage" NAME="pytest in test_Facebook_Registration.py Coverage Results" MODIFIED="1536734119604" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_FBUserprofilePUT_py.coverage" NAME="pytest in test_FBUserprofilePUT.py Coverage Results" MODIFIED="1536315512665" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_for_test_usercreate_UserCreate_test_positive_usercreate.coverage" NAME="pytest for test_usercreate.UserCreate.test_positive_usercreate Coverage Results" MODIFIED="1536059246508" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$base.coverage" NAME="base Coverage Results" MODIFIED="1535440720476" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_UserprofilePUT_py.coverage" NAME="pytest in test_UserprofilePUT.py Coverage Results" MODIFIED="1536664403641" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$properties.coverage" NAME="properties Coverage Results" MODIFIED="1535442911890" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$facebook_token.coverage" NAME="facebook_token Coverage Results" MODIFIED="1536688915499" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_verifyOTP_py.coverage" NAME="pytest in test_verifyOTP.py Coverage Results" MODIFIED="1536305156430" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_FBUserprofileGETfb_py.coverage" NAME="pytest in test_FBUserprofileGETfb.py Coverage Results" MODIFIED="1536385328455" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$congif.coverage" NAME="congif Coverage Results" MODIFIED="1535437762275" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/SaveyraAPI$pytest_in_test_usersettingsGET_py.coverage" NAME="pytest in test_usersettingsGET.py Coverage Results" MODIFIED="1536216456819" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="320" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="ExportTestResults" outputFolder="$PROJECT_DIR$" userTempatePath="" />
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1462481184">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="11" />
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.10" value="1" />
+          <entry key="project.open.time.11" value="1" />
+          <entry key="project.open.time.15" value="1" />
+          <entry key="project.open.time.24" value="1" />
+          <entry key="project.open.time.27" value="1" />
+          <entry key="project.open.time.28" value="1" />
+          <entry key="project.open.time.30" value="1" />
+          <entry key="project.open.time.31" value="1" />
+          <entry key="project.open.time.42" value="1" />
+          <entry key="project.open.time.70" value="1" />
+          <entry key="project.opened" value="11" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="Python Console" value="41" />
+          <entry key="dummy" value="14" />
+          <entry key="http" value="75" />
+          <entry key="py" value="3528" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="HTTP Request" value="75" />
+          <entry key="PLAIN_TEXT" value="14" />
+          <entry key="Python" value="3569" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="html" value="5" />
+          <entry key="http" value="2" />
+          <entry key="py" value="135" />
+          <entry key="py___jb_old___" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="HTML" value="5" />
+          <entry key="HTTP Request" value="2" />
+          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="Python" value="135" />
+        </counts>
+      </usages-collector>
+    </session>
+    <session id="913736453">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="39" />
+          <entry key="project.open.time.0" value="4" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.11" value="3" />
+          <entry key="project.open.time.12" value="5" />
+          <entry key="project.open.time.14" value="1" />
+          <entry key="project.open.time.15" value="1" />
+          <entry key="project.open.time.17" value="1" />
+          <entry key="project.open.time.19" value="1" />
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.25" value="1" />
+          <entry key="project.open.time.26" value="3" />
+          <entry key="project.open.time.27" value="2" />
+          <entry key="project.open.time.28" value="2" />
+          <entry key="project.open.time.29" value="1" />
+          <entry key="project.open.time.30" value="4" />
+          <entry key="project.open.time.31" value="3" />
+          <entry key="project.open.time.35" value="1" />
+          <entry key="project.open.time.37" value="1" />
+          <entry key="project.open.time.42" value="2" />
+          <entry key="project.open.time.43" value="1" />
+          <entry key="project.open.time.6" value="1" />
+          <entry key="project.open.time.8" value="1" />
+          <entry key="project.open.time.9" value="1" />
+          <entry key="project.opened" value="42" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="com" value="1" />
+          <entry key="configuration" value="5" />
+          <entry key="congiguration" value="1" />
+          <entry key="css" value="1" />
+          <entry key="csv" value="13" />
+          <entry key="html" value="11" />
+          <entry key="http" value="3" />
+          <entry key="ids" value="2" />
+          <entry key="ini" value="40" />
+          <entry key="json" value="78" />
+          <entry key="lastfailed" value="2" />
+          <entry key="md" value="1" />
+          <entry key="nodeids" value="4" />
+          <entry key="properties" value="3" />
+          <entry key="py" value="1200" />
+          <entry key="tmp" value="2" />
+          <entry key="txt" value="14" />
+          <entry key="xml" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="CSS" value="1" />
+          <entry key="CSV" value="12" />
+          <entry key="HTML" value="10" />
+          <entry key="HTTP Request" value="1" />
+          <entry key="Ini" value="40" />
+          <entry key="JSON" value="78" />
+          <entry key="Markdown" value="1" />
+          <entry key="PLAIN_TEXT" value="31" />
+          <entry key="Properties" value="3" />
+          <entry key="Python" value="1200" />
+          <entry key="Scratch" value="2" />
+          <entry key="UML" value="1" />
+          <entry key="UNKNOWN" value="1" />
+          <entry key="XML" value="4" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="Python Console" value="184" />
+          <entry key="configuration" value="12" />
+          <entry key="congiguration" value="1" />
+          <entry key="csv" value="6" />
+          <entry key="dummy" value="150" />
+          <entry key="ini" value="735" />
+          <entry key="json" value="16" />
+          <entry key="properties" value="40" />
+          <entry key="py" value="20766" />
+          <entry key="txt" value="339" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="CSV" value="6" />
+          <entry key="Ini" value="735" />
+          <entry key="JSON" value="16" />
+          <entry key="PLAIN_TEXT" value="502" />
+          <entry key="Properties" value="40" />
+          <entry key="Python" value="20950" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.vcs.git.usages">
+        <counts>
+          <entry key="git.branch.merge" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+    <session id="-1781479822">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.0" value="2" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="ini" value="1" />
+          <entry key="py" value="18" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Ini" value="1" />
+          <entry key="Python" value="18" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="ini" value="1" />
+          <entry key="py" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Ini" value="1" />
+          <entry key="Python" value="3" />
+        </counts>
+      </usages-collector>
+    </session>
+    <session id="-1906839473">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="8" />
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.18" value="1" />
+          <entry key="project.open.time.20" value="1" />
+          <entry key="project.open.time.25" value="1" />
+          <entry key="project.open.time.29" value="2" />
+          <entry key="project.open.time.7" value="1" />
+          <entry key="project.open.time.8" value="2" />
+          <entry key="project.open.time.9" value="1" />
+          <entry key="project.opened" value="10" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="html" value="2" />
+          <entry key="ini" value="9" />
+          <entry key="json" value="14" />
+          <entry key="py" value="342" />
+          <entry key="txt" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="HTML" value="2" />
+          <entry key="Ini" value="9" />
+          <entry key="JSON" value="14" />
+          <entry key="PLAIN_TEXT" value="2" />
+          <entry key="Python" value="342" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="dummy" value="10" />
+          <entry key="ini" value="332" />
+          <entry key="json" value="3" />
+          <entry key="py" value="3095" />
+          <entry key="txt" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Ini" value="332" />
+          <entry key="JSON" value="3" />
+          <entry key="PLAIN_TEXT" value="11" />
+          <entry key="Python" value="3095" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.vcs.git.usages">
+        <counts>
+          <entry key="git.branch.merge" value="2" />
+          <entry key="git.checkout.as.new.branch" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+    <session id="-1072628224">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="ini" value="1" />
+          <entry key="json" value="1" />
+          <entry key="py" value="45" />
+          <entry key="txt" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Ini" value="1" />
+          <entry key="JSON" value="1" />
+          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="Python" value="45" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="ini" value="94" />
+          <entry key="py" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Ini" value="94" />
+          <entry key="Python" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="SaveyraAPI" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test_VerifyOTP.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="27" column="49" lean-forward="true" selection-start-line="27" selection-start-column="49" selection-end-line="27" selection-end-column="49" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTTP Request" />
+        <option value="Python Unit Test" />
+        <option value="package.json" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>TestCase</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/testrandom.py" />
+        <option value="$PROJECT_DIR$/test_random.py" />
+        <option value="$PROJECT_DIR$/data.ini" />
+        <option value="$PROJECT_DIR$/test_FBUserprofilePUTfb.py" />
+        <option value="$PROJECT_DIR$/test_FBRegistration.py" />
+        <option value="$PROJECT_DIR$/test_FBUserprofileGETfb.py" />
+        <option value="$PROJECT_DIR$/run.py" />
+        <option value="$PROJECT_DIR$/test_UsersprofileGET.py" />
+        <option value="$PROJECT_DIR$/test_FBLogin.py" />
+        <option value="$PROJECT_DIR$/test_FBRegistrationMobile.py" />
+        <option value="$PROJECT_DIR$/test_FBUserprofileGETmobile.py" />
+        <option value="$PROJECT_DIR$/test_FBUserprofilePUTmobile.py" />
+        <option value="$PROJECT_DIR$/test_UsersettingsGETlat.py" />
+        <option value="$PROJECT_DIR$/test_Facebook_UserprofilePUT.py" />
+        <option value="$PROJECT_DIR$/test_facebook_token.py" />
+        <option value="$PROJECT_DIR$/responsedata1.json" />
+        <option value="$PROJECT_DIR$/responsedata.json" />
+        <option value="$PROJECT_DIR$/device.txt" />
+        <option value="$PROJECT_DIR$/facebook_token.py" />
+        <option value="$PROJECT_DIR$/test_Facebook_Userprofile_GET.py" />
+        <option value="$PROJECT_DIR$/test_Facebook_Registration_Mobile.py" />
+        <option value="$PROJECT_DIR$/test_Facebook_Registration.py" />
+        <option value="$PROJECT_DIR$/Run.py" />
+        <option value="$PROJECT_DIR$/test_Negetive_VerifyOTP.py" />
+        <option value="$PROJECT_DIR$/EnvironmentRead.py" />
+        <option value="$PROJECT_DIR$/test_Negetive_Usercreate.py" />
+        <option value="$PROJECT_DIR$/test_VerifyOTP.py" />
+        <option value="$PROJECT_DIR$/test_usersprofileGET.py" />
+        <option value="$PROJECT_DIR$/test_UsersettingsPOST.py" />
+        <option value="$PROJECT_DIR$/test_UsersettingsGET.py" />
+        <option value="$PROJECT_DIR$/test_UserprofilePUT.py" />
+        <option value="$PROJECT_DIR$/test_Usercreate.py" />
+        <option value="$PROJECT_DIR$/test_SearchAsyncCall.py" />
+        <option value="$PROJECT_DIR$/test_Search.py" />
+        <option value="$PROJECT_DIR$/test_ResendOTP.py" />
+        <option value="$PROJECT_DIR$/test_Registration.py" />
+        <option value="$PROJECT_DIR$/test_Refreshtoken.py" />
+        <option value="$PROJECT_DIR$/test_ReadOTP.py" />
+        <option value="$PROJECT_DIR$/test_NotificationpreferencesPUT.py" />
+        <option value="$PROJECT_DIR$/test_NotificationpreferencesGET.py" />
+        <option value="$PROJECT_DIR$/test_Login.py" />
+        <option value="$PROJECT_DIR$/test_Keyboardhomescreen.py" />
+        <option value="$PROJECT_DIR$/test_Filters.py" />
+        <option value="$PROJECT_DIR$/test_Feedback.py" />
+        <option value="$PROJECT_DIR$/test_Facebook_Userprofile_PUT_Mobile.py" />
+        <option value="$PROJECT_DIR$/test_Facebook_Userprofile_PUT.py" />
+        <option value="$PROJECT_DIR$/test_Facebook_Userprofile_GET_Mobile.py" />
+        <option value="$PROJECT_DIR$/Environment.ini" />
+        <option value="$PROJECT_DIR$/test_Facebook_Login.py" />
+        <option value="$PROJECT_DIR$/test_Contactus.py" />
+        <option value="$PROJECT_DIR$/test_Configuration.py" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="9" />
+    <option name="y" value="18" />
+    <option name="width" value="1347" />
+    <option name="height" value="690" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State />
+          <State>
+            <id>Spelling</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>SpellCheckingInspection</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="SaveyraAPI" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SaveyraAPI" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ChangesTree.GroupingKeys" value="repository&#10;directory" />
+    <property name="SearchEverywhereHistoryKey" value="works&#9;FILE&#9;file://D:/SaveyraAPI/.idea/workspace.xml&#10;workspace&#9;FILE&#9;file://D:/SaveyraAPI/.idea/workspace.xml" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="js.buildTools.gulp.gulp_package_dir" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs.jest.jest_package" value="" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="two.files.diff.last.used.folder" value="D:/local" />
+  </component>
+  <component name="RecentsManager">
+    <key name="OPEN_URL_DIALOG">
+      <recent name="http://saveyra.com/" />
+    </key>
+  </component>
+  <component name="RestClientSettings">
+    <option name="REQUEST_HISTORY">
+      <list>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="https://saveyra.com" />
+          <option name="urlPath" value="saveyra/v1/users/create/access_token=e2cf3ff0-8661-11e8-adc0-fa7ae01bbebc" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parameters">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="deviceId" />
+                <option name="value" value="89032bf7-f06b-415f-9bd2-673307463b9a" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="notificationId" />
+                <option name="value" value="null" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="manufacturingDetails" />
+                <option name="value" value="null" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="https://saveyra.com" />
+          <option name="urlPath" value="saveyra/v1/users/create/access_token=e2cf3ff0-8661-11e8-adc0-fa7ae01bbebc" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parameters">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="deviceId" />
+                <option name="value" value="89032bf7-f06b-415f-9bd2-673307463b9a" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="https://saveyra.com" />
+          <option name="urlPath" value="saveyra/v1/users/create" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parameters">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="access_token" />
+                <option name="value" value="e2cf3ff0-8661-11e8-adc0-fa7ae01bbebc" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="access_token" />
+                <option name="value" value="e2cf3ff0-8661-11e8-adc0-fa7ae01bbebc" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+        <RestClientRequest>
+          <option name="httpMethod" value="POST" />
+          <option name="urlBase" value="https://saveyra.com" />
+          <option name="urlPath" value="saveyra/v1/users/create" />
+          <option name="headers">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="Accept" />
+                <option name="value" value="*/*" />
+              </KeyValuePair>
+              <KeyValuePair>
+                <option name="key" value="Cache-Control" />
+                <option name="value" value="no-cache" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parameters">
+            <list>
+              <KeyValuePair>
+                <option name="key" value="access_token" />
+                <option name="value" value="e2cf3ff0-8661-11e8-adc0-fa7ae01bbebc" />
+              </KeyValuePair>
+            </list>
+          </option>
+          <option name="parametersEnabled" value="true" />
+          <option name="textToSend" value="" />
+          <option name="filesToSend" value="" />
+        </RestClientRequest>
+      </list>
+    </option>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.propertiesRead">
+    <configuration name="EnvironmentRead" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="SaveryaAPI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/EnvironmentRead.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="base" type="PythonConfigurationType" factoryName="Python">
+      <module name="SaveryaAPI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/base.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="propertiesRead" type="PythonConfigurationType" factoryName="Python">
+      <module name="SaveryaAPI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="url" value="https://saveyra.com" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="D:\SaveyraAPI\EnvironmentRead.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in Run_positive.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="SaveryaAPI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/Run_positive.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in SaveyraAPI" type="tests" factoryName="py.test" nameIsGenerated="true">
+      <module name="SaveryaAPI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in test_Negetive_Usercreate.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="SaveryaAPI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/test_Negetive_Usercreate.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in test_SearchAsyncCall.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="SaveryaAPI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/test_SearchAsyncCall.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="pytest in test_Usercreate.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="SaveryaAPI" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/test_Usercreate.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.propertiesRead" />
+      <item itemvalue="Python.base" />
+      <item itemvalue="Python tests.pytest in SaveyraAPI" />
+      <item itemvalue="Python tests.pytest in test_SearchAsyncCall.py" />
+      <item itemvalue="Python tests.pytest in Run_positive.py" />
+      <item itemvalue="Python.EnvironmentRead" />
+      <item itemvalue="Python tests.pytest in test_Negetive_Usercreate.py" />
+      <item itemvalue="Python tests.pytest in test_Usercreate.py" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.pytest in test_Negetive_Usercreate.py" />
+        <item itemvalue="Python.EnvironmentRead" />
+        <item itemvalue="Python tests.pytest in test_Usercreate.py" />
+        <item itemvalue="Python tests.pytest in Run_positive.py" />
+        <item itemvalue="Python tests.pytest in test_SearchAsyncCall.py" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="115841bd-cc8e-4990-afd0-53961d3350ff" name="Default Changelist" comment="" />
+      <created>1534588894557</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1534588894557</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Covered Negetive Cases for create user,Registration,Verify OTP,User Profile, Login,Notification preference, Feedback, Contactus, SearchAPI, Search API Async call, Filters">
+      <created>1534941352633</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1534941352637</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Covered test cases for FB Login and FB registration">
+      <created>1535101232376</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1535101232376</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Covered test cases for FB Login and FB registration">
+      <created>1535108779017</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1535108779018</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Covered test cases for FB ProfileSettings,Register,Login">
+      <created>1535108865466</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1535108865466</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Covered test cases for FB ProfileSettings,Register,Login">
+      <created>1535972745055</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1535972745055</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="pytest_in_test_Negetive_Usercreate_py - 2018.09.15 at 17h 43m 10s.xml">
+      <configuration name="pytest in test_Negetive_Usercreate.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_test_Negetive_Usercreate_py - 2018.09.15 at 17h 43m 42s.xml">
+      <configuration name="pytest in test_Negetive_Usercreate.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_test_Negetive_Usercreate_py - 2018.09.15 at 17h 44m 15s.xml">
+      <configuration name="pytest in test_Negetive_Usercreate.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_test_Negetive_Usercreate_py - 2018.09.15 at 17h 44m 54s.xml">
+      <configuration name="pytest in test_Negetive_Usercreate.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_test_Negetive_Usercreate_py - 2018.09.15 at 17h 46m 08s.xml">
+      <configuration name="pytest in test_Negetive_Usercreate.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_test_Negetive_Usercreate_py - 2018.09.15 at 17h 46m 55s.xml">
+      <configuration name="pytest in test_Negetive_Usercreate.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_test_Negetive_Usercreate_py - 2018.09.15 at 17h 51m 02s.xml">
+      <configuration name="pytest in test_Negetive_Usercreate.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_test_Negetive_Usercreate_py - 2018.09.15 at 17h 51m 32s.xml">
+      <configuration name="pytest in test_Negetive_Usercreate.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_test_Negetive_Usercreate_py - 2018.09.15 at 17h 51m 53s.xml">
+      <configuration name="pytest in test_Negetive_Usercreate.py" configurationId="tests" />
+    </history-entry>
+    <history-entry file="pytest_in_test_Negetive_Usercreate_py - 2018.09.15 at 17h 52m 07s.xml">
+      <configuration name="pytest in test_Negetive_Usercreate.py" configurationId="tests" />
+    </history-entry>
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49344262" visible="true" weight="0.33522266" />
+      <window_info id="Structure" order="1" sideWeight="0.5065574" side_tool="true" weight="0.26928896" />
+      <window_info id="Favorites" order="2" sideWeight="0.50342464" side_tool="true" weight="0.27987897" />
+      <window_info anchor="bottom" id="Inspection Results" order="0" weight="0.3295082" />
+      <window_info anchor="bottom" id="REST Client" order="1" weight="0.49836066" />
+      <window_info anchor="bottom" id="Concurrent Activities Diagram" order="2" weight="0.3295082" />
+      <window_info anchor="bottom" id="Messages" order="3" weight="0.10655738" />
+      <window_info anchor="bottom" id="Message" order="4" />
+      <window_info anchor="bottom" id="Find" order="5" weight="0.3291815" />
+      <window_info anchor="bottom" id="Debug" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="9" weight="0.3295082" />
+      <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.49848714" weight="0.32786885" />
+      <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.5015129" side_tool="true" weight="0.15409836" />
+      <window_info anchor="bottom" id="Python Console" order="14" weight="0.3295082" />
+      <window_info anchor="bottom" id="Run" order="15" sideWeight="0.49924356" weight="0.78032786" />
+      <window_info anchor="bottom" id="Terminal" order="16" sideWeight="0.49848714" weight="0.4885246" />
+      <window_info anchor="right" id="R Packages" order="0" weight="0.32980332" />
+      <window_info anchor="right" id="R Graphics" order="1" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="2" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
+      <window_info anchor="right" id="SciView" order="5" weight="0.32980332" />
+      <window_info anchor="right" id="Coverage" order="6" side_tool="true" weight="0.32980332" />
+      <window_info anchor="right" id="Database" order="7" weight="0.32980332" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
+    <MESSAGE value="Covered Negetive Cases for create user,Registration,Verify OTP,User Profile, Login,Notification preference, Feedback, Contactus, SearchAPI, Search API Async call, Filters" />
+    <MESSAGE value="Covered test cases for FB Login and FB registration" />
+    <MESSAGE value="Covered test cases for FB ProfileSettings,Register,Login" />
+    <option name="LAST_COMMIT_MESSAGE" value="Covered test cases for FB ProfileSettings,Register,Login" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://D:/local/test_configuration.py" />
+    <entry file="file://$PROJECT_DIR$/test_FBUserprofilePUTfb.py" />
+    <entry file="file://$PROJECT_DIR$/test_FBUserprofilePUTmobile.py" />
+    <entry file="file://$PROJECT_DIR$/test_FBUserprofileGETmobile.py" />
+    <entry file="file://$PROJECT_DIR$/test_FBRegistrationMobile.py" />
+    <entry file="file://$PROJECT_DIR$/test_FBUserprofileGETfb.py" />
+    <entry file="file://$PROJECT_DIR$/test.py" />
+    <entry file="file://$PROJECT_DIR$/otp.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/device.json.tmp" />
+    <entry file="file://$PROJECT_DIR$/data.json" />
+    <entry file="file://$PROJECT_DIR$/test_Facebook_UserprofilePUT.py" />
+    <entry file="file://$PROJECT_DIR$/test_Facebook_UserprofileGET.py" />
+    <entry file="file://$PROJECT_DIR$/Test Results - pytest_in_SaveyraAPI.html" />
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37-32/Lib/site-packages/facebook_business/adobjects/abstractcrudobject.py" />
+    <entry file="file://$PROJECT_DIR$/facebook_token.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_Facebook_Userprofile_GET.py" />
+    <entry file="file://$PROJECT_DIR$/test_Facebook_Registration_Mobile.py" />
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="33202">
+          <caret line="1277" column="10" lean-forward="true" selection-start-line="1277" selection-start-column="10" selection-end-line="1277" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/responsedata1.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/responsedata.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Run_positive.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="106" column="12" lean-forward="true" selection-start-line="106" selection-start-column="12" selection-end-line="106" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_Negetive_Usercreate.py" />
+    <entry file="file://$PROJECT_DIR$/test_Facebook_Userprofile_PUT_Mobile.py" />
+    <entry file="file://$PROJECT_DIR$/test_Facebook_Userprofile_PUT.py" />
+    <entry file="file://$PROJECT_DIR$/test_Facebook_Userprofile_GET_Mobile.py" />
+    <entry file="file://$PROJECT_DIR$/device.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/device.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Environment.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-119">
+          <caret line="8" column="32" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/EnvironmentRead.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_usersprofileGET.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="21" column="45" lean-forward="true" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_UsersettingsPOST.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="22" column="45" lean-forward="true" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_UsersettingsGET.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="22" column="49" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_UserprofilePUT.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-139">
+          <caret line="22" column="49" lean-forward="true" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_Usercreate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-17">
+          <caret line="17" column="45" lean-forward="true" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_SearchAsyncCall.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="22" column="49" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_Search.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="22" column="49" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_ResendOTP.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="22" column="45" lean-forward="true" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_Registration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-17">
+          <caret line="18" column="39" lean-forward="true" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_Refreshtoken.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="23" column="39" lean-forward="true" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_ReadOTP.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="17" column="39" lean-forward="true" selection-start-line="17" selection-start-column="39" selection-end-line="17" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_Feedback.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="21" column="45" lean-forward="true" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_Filters.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="22" column="43" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_Keyboardhomescreen.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="23" column="43" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_Login.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="23" column="43" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_NotificationpreferencesGET.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="23" column="39" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_NotificationpreferencesPUT.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="23" column="43" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_Facebook_Registration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="13" column="2" selection-start-line="13" selection-start-column="2" selection-end-line="13" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_Facebook_Login.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="541">
+          <caret line="37" column="21" selection-start-line="37" selection-start-column="21" selection-end-line="37" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_Contactus.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="22" column="45" lean-forward="true" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_Configuration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="24" column="39" lean-forward="true" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_VerifyOTP.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="27" column="49" lean-forward="true" selection-start-line="27" selection-start-column="49" selection-end-line="27" selection-end-column="49" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

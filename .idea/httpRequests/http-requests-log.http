@@ -1,0 +1,46 @@
+POST https://saveyra.com/saveyra/v1/users/create/access_token=e2cf3ff0-8661-11e8-adc0-fa7ae01bbebc?deviceId=89032bf7-f06b-415f-9bd2-673307463b9a&notificationId=null&manufacturingDetails=null
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-08-29T051410.404.html
+
+###
+
+POST https://saveyra.com/saveyra/v1/users/create/access_token=e2cf3ff0-8661-11e8-adc0-fa7ae01bbebc?deviceId=89032bf7-f06b-415f-9bd2-673307463b9a
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-08-29T051311.404.html
+
+###
+
+POST https://saveyra.com/saveyra/v1/users/create?access_token=e2cf3ff0-8661-11e8-adc0-fa7ae01bbebc&access_token=e2cf3ff0-8661-11e8-adc0-fa7ae01bbebc
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-08-29T051121.500.json
+
+###
+
+POST https://saveyra.com/saveyra/v1/users/create?access_token=e2cf3ff0-8661-11e8-adc0-fa7ae01bbebc&access_token=e2cf3ff0-8661-11e8-adc0-fa7ae01bbebc
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-08-29T011013.500.json
+
+###
+
+POST https://saveyra.com/saveyra/v1/users/create?access_token=e2cf3ff0-8661-11e8-adc0-fa7ae01bbebc
+Accept: */*
+Cache-Control: no-cache
+
+<> 2018-08-29T010910.500.json
+
+###
+
+POST http://localhost:8080/resources
+Accept: */*
+Cache-Control: no-cache
+
+###
+

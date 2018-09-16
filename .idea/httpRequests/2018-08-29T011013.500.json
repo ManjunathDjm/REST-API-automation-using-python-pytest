@@ -1,0 +1,5 @@
+{
+  "displayMessage": "internal server error",
+  "errorMessage": "'deviceId'",
+  "status": 500
+}

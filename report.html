@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Test Report</title>
+    <link href="assets/style.css" rel="stylesheet" type="text/css"/></head>
+  <body onLoad="init()">
+    <script>/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+
+function toArray(iter) {
+    if (iter === null) {
+        return null;
+    }
+    return Array.prototype.slice.call(iter);
+}
+
+function find(selector, elem) {
+    if (!elem) {
+        elem = document;
+    }
+    return elem.querySelector(selector);
+}
+
+function find_all(selector, elem) {
+    if (!elem) {
+        elem = document;
+    }
+    return toArray(elem.querySelectorAll(selector));
+}
+
+function sort_column(elem) {
+    toggle_sort_states(elem);
+    var colIndex = toArray(elem.parentNode.childNodes).indexOf(elem);
+    var key;
+    if (elem.classList.contains('numeric')) {
+        key = key_num;
+    } else if (elem.classList.contains('result')) {
+        key = key_result;
+    } else {
+        key = key_alpha;
+    }
+    sort_table(elem, key(colIndex));
+}
+
+function show_all_extras() {
+    find_all('.col-result').forEach(show_extras);
+}
+
+function hide_all_extras() {
+    find_all('.col-result').forEach(hide_extras);
+}
+
+function show_extras(colresult_elem) {
+    var extras = colresult_elem.parentNode.nextElementSibling;
+    var expandcollapse = colresult_elem.firstElementChild;
+    extras.classList.remove("collapsed");
+    expandcollapse.classList.remove("expander");
+    expandcollapse.classList.add("collapser");
+}
+
+function hide_extras(colresult_elem) {
+    var extras = colresult_elem.parentNode.nextElementSibling;
+    var expandcollapse = colresult_elem.firstElementChild;
+    extras.classList.add("collapsed");
+    expandcollapse.classList.remove("collapser");
+    expandcollapse.classList.add("expander");
+}
+
+function show_filters() {
+    var filter_items = document.getElementsByClassName('filter');
+    for (var i = 0; i < filter_items.length; i++)
+        filter_items[i].hidden = false;
+}
+
+function add_collapse() {
+    // Add links for show/hide all
+    var resulttable = find('table#results-table');
+    var showhideall = document.createElement("p");
+    showhideall.innerHTML = '<a href="javascript:show_all_extras()">Show all details</a> / ' +
+                            '<a href="javascript:hide_all_extras()">Hide all details</a>';
+    resulttable.parentElement.insertBefore(showhideall, resulttable);
+
+    // Add show/hide link to each result
+    find_all('.col-result').forEach(function(elem) {
+        var collapsed = get_query_parameter('collapsed') || 'Passed';
+        var extras = elem.parentNode.nextElementSibling;
+        var expandcollapse = document.createElement("span");
+        if (collapsed.includes(elem.innerHTML)) {
+            extras.classList.add("collapsed");
+            expandcollapse.classList.add("expander");
+        } else {
+            expandcollapse.classList.add("collapser");
+        }
+        elem.appendChild(expandcollapse);
+
+        elem.addEventListener("click", function(event) {
+            if (event.currentTarget.parentNode.nextElementSibling.classList.contains("collapsed")) {
+                show_extras(event.currentTarget);
+            } else {
+                hide_extras(event.currentTarget);
+            }
+        });
+    })
+}
+
+function get_query_parameter(name) {
+    var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+
+function init () {
+    reset_sort_headers();
+
+    add_collapse();
+
+    show_filters();
+
+    toggle_sort_states(find('.initial-sort'));
+
+    find_all('.sortable').forEach(function(elem) {
+        elem.addEventListener("click",
+                              function(event) {
+                                  sort_column(elem);
+                              }, false)
+    });
+
+};
+
+function sort_table(clicked, key_func) {
+    var rows = find_all('.results-table-row');
+    var reversed = !clicked.classList.contains('asc');
+    var sorted_rows = sort(rows, key_func, reversed);
+    /* Whole table is removed here because browsers acts much slower
+     * when appending existing elements.
+     */
+    var thead = document.getElementById("results-table-head");
+    document.getElementById('results-table').remove();
+    var parent = document.createElement("table");
+    parent.id = "results-table";
+    parent.appendChild(thead);
+    sorted_rows.forEach(function(elem) {
+        parent.appendChild(elem);
+    });
+    document.getElementsByTagName("BODY")[0].appendChild(parent);
+}
+
+function sort(items, key_func, reversed) {
+    var sort_array = items.map(function(item, i) {
+        return [key_func(item), i];
+    });
+    var multiplier = reversed ? -1 : 1;
+
+    sort_array.sort(function(a, b) {
+        var key_a = a[0];
+        var key_b = b[0];
+        return multiplier * (key_a >= key_b ? 1 : -1);
+    });
+
+    return sort_array.map(function(item) {
+        var index = item[1];
+        return items[index];
+    });
+}
+
+function key_alpha(col_index) {
+    return function(elem) {
+        return elem.childNodes[1].childNodes[col_index].firstChild.data.toLowerCase();
+    };
+}
+
+function key_num(col_index) {
+    return function(elem) {
+        return parseFloat(elem.childNodes[1].childNodes[col_index].firstChild.data);
+    };
+}
+
+function key_result(col_index) {
+    return function(elem) {
+        var strings = ['Error', 'Failed', 'Rerun', 'XFailed', 'XPassed',
+                       'Skipped', 'Passed'];
+        return strings.indexOf(elem.childNodes[1].childNodes[col_index].firstChild.data);
+    };
+}
+
+function reset_sort_headers() {
+    find_all('.sort-icon').forEach(function(elem) {
+        elem.parentNode.removeChild(elem);
+    });
+    find_all('.sortable').forEach(function(elem) {
+        var icon = document.createElement("div");
+        icon.className = "sort-icon";
+        icon.textContent = "vvv";
+        elem.insertBefore(icon, elem.firstChild);
+        elem.classList.remove("desc", "active");
+        elem.classList.add("asc", "inactive");
+    });
+}
+
+function toggle_sort_states(elem) {
+    //if active, toggle between asc and desc
+    if (elem.classList.contains('active')) {
+        elem.classList.toggle('asc');
+        elem.classList.toggle('desc');
+    }
+
+    //if inactive, reset all other functions and add ascending active
+    if (elem.classList.contains('inactive')) {
+        reset_sort_headers();
+        elem.classList.remove('inactive');
+        elem.classList.add('active');
+    }
+}
+
+function is_all_rows_hidden(value) {
+  return value.hidden == false;
+}
+
+function filter_table(elem) {
+    var outcome_att = "data-test-result";
+    var outcome = elem.getAttribute(outcome_att);
+    class_outcome = outcome + " results-table-row";
+    var outcome_rows = document.getElementsByClassName(class_outcome);
+
+    for(var i = 0; i < outcome_rows.length; i++){
+        outcome_rows[i].hidden = !elem.checked;
+    }
+
+    var rows = find_all('.results-table-row').filter(is_all_rows_hidden);
+    var all_rows_hidden = rows.length == 0 ? true : false;
+    var not_found_message = document.getElementById("not-found-message");
+    not_found_message.hidden = !all_rows_hidden;
+}
+</script>
+    <h1>report.html</h1>
+    <p>Report generated on 12-Sep-2018 at 15:00:14 by<a href="https://pypi.python.org/pypi/pytest-html"> pytest-html</a> v1.19.0</p>
+    <h2>Environment</h2>
+    <table id="environment">
+      <tr>
+        <td>JAVA_HOME</td>
+        <td>C:\Program Files\Java\jdk1.8.0_181</td></tr>
+      <tr>
+        <td>Packages</td>
+        <td>{&apos;pytest&apos;: &apos;3.7.1&apos;, &apos;py&apos;: &apos;1.5.4&apos;, &apos;pluggy&apos;: &apos;0.7.1&apos;}</td></tr>
+      <tr>
+        <td>Platform</td>
+        <td>Windows-10-10.0.16299-SP0</td></tr>
+      <tr>
+        <td>Plugins</td>
+        <td>{&apos;tavern&apos;: &apos;0.17.2&apos;, &apos;xdist&apos;: &apos;1.22.5&apos;, &apos;scenario&apos;: &apos;1.0a6&apos;, &apos;repeat&apos;: &apos;0.7.0&apos;, &apos;ordering&apos;: &apos;0.5&apos;, &apos;metadata&apos;: &apos;1.7.0&apos;, &apos;html&apos;: &apos;1.19.0&apos;, &apos;forked&apos;: &apos;0.2&apos;}</td></tr>
+      <tr>
+        <td>Python</td>
+        <td>3.7.0</td></tr></table>
+    <h2>Summary</h2>
+    <p>25 tests ran in 38.09 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="passed">15 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="failed">10 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
+    <h2>Results</h2>
+    <table id="results-table">
+      <thead id="results-table-head">
+        <tr>
+          <th class="sortable result initial-sort" col="result">Result</th>
+          <th class="sortable" col="name">Test</th>
+          <th class="sortable numeric" col="duration">Duration</th>
+          <th>Links</th></tr>
+        <tr hidden="true" id="not-found-message">
+          <th colspan="4">No results found. Try to check the filters</th></tr></thead>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">Run.py::Registration::test2_Registration</td>
+          <td class="col-duration">2.52</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;test_Registration.Registration testMethod=test2_Registration&gt;<br/><br/>    @pytest.mark.run(order=2)<br/>    def test2_Registration(self):<br/>        url = str(<br/>            EnvironmentRead.ipPort) + &quot;/saveyra/v1/users/register?access_token={0}&quot;.format(EnvironmentRead.access_token)<br/>    <br/>        with open(&#x27;responsedata.json&#x27;) as f:<br/>            sessionKey = json.loads(f.read())<br/>            sessionKey = sessionKey[&#x27;sessionKey&#x27;]<br/>            print(sessionKey)<br/>    <br/>        headers = {&#x27;Content-type&#x27;: &#x27;application/json&#x27;, &#x27;SessionKey&#x27;: sessionKey}<br/>    <br/>        with open(&#x27;responsedata.json&#x27;) as f:<br/>            applicationId = json.loads(f.read())<br/>            applicationId = applicationId[&#x27;applicationId&#x27;]<br/>            print(applicationId)<br/>    <br/>        body = {<br/>    <br/>            &#x27;applicationId&#x27;: applicationId,<br/>            &#x27;channel&#x27;: &#x27;Mobile&#x27;,<br/>            &#x27;mobileNumber&#x27;: &quot;9036890379&quot;,<br/>            &#x27;facebookId&#x27;: None,<br/>            &#x27;token&#x27;: None<br/>    <br/>        }<br/>    <br/>        response = requests.post(url, data=json.dumps(body), headers=headers)<br/>        print(json.dumps(response.json(), indent=4))<br/>        print(response.status_code)<br/>&gt;       self.assertEqual(200, response.status_code)<br/><span class="error">E       AssertionError: 200 != 500</span><br/><br/>test_Registration.py:40: AssertionError<br/>----------------------------- Captured stdout call -----------------------------<br/>e6af38dd-ee21-4090-92b7-13990b6b2bb7
+03071aeb-d97d-47f5-bb17-49e889b99fdb
+{
+    &quot;errorMessage&quot;: &quot;None&quot;,
+    &quot;status&quot;: 500,
+    &quot;displayMessage&quot;: &quot;internal server error&quot;
+}
+500
+</div></td></tr></tbody>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">Run.py::VerifyOTP::test_Verify_OTP</td>
+          <td class="col-duration">1.10</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;test_VerifyOTP.VerifyOTP testMethod=test_Verify_OTP&gt;<br/><br/>    @pytest.mark.run(order=4)<br/>    def test_Verify_OTP(self):<br/>        with open(&#x27;responsedata.json&#x27;) as f:<br/>            applicationId = json.loads(f.read())<br/>            applicationId = applicationId[&#x27;applicationId&#x27;]<br/>            print(applicationId)<br/>    <br/>        url = str(<br/>            EnvironmentRead.ipPort) + &quot;/saveyra/v1/users/&quot; + applicationId + &quot;/register/verify/otp?access_token={0}&quot;.format(<br/>            EnvironmentRead.access_token)<br/>    <br/>        with open(&#x27;responsedata.json&#x27;) as f:<br/>            sessionKey = json.loads(f.read())<br/>            sessionKey = sessionKey[&#x27;sessionKey&#x27;]<br/>            print(sessionKey)<br/>    <br/>        headers = {&#x27;Content-type&#x27;: &#x27;application/json&#x27;, &#x27;SessionKey&#x27;: sessionKey}<br/>    <br/>        with open(&#x27;otp.json&#x27;) as f:<br/>            otp = json.loads(f.read())<br/>            otp = otp[&#x27;otp&#x27;]<br/>            print(otp)<br/>            body = {<br/>                &#x27;otp&#x27;: otp,<br/>                &#x27;mobileNumber&#x27;: &#x27;9036890379&#x27;<br/>            }<br/>            response = requests.post(url, data=json.dumps(body), headers=headers)<br/>            print(json.dumps(response.json(), indent=4))<br/>            userKey = response.json()<br/>            sessionKey = response.json()<br/>            print(response.status_code)<br/>            print(response.headers)<br/>&gt;           self.assertEqual(202, response.status_code)<br/><span class="error">E           AssertionError: 202 != 500</span><br/><br/>test_VerifyOTP.py:42: AssertionError<br/>----------------------------- Captured stdout call -----------------------------<br/>03071aeb-d97d-47f5-bb17-49e889b99fdb
+e6af38dd-ee21-4090-92b7-13990b6b2bb7
+905972,{&#x27;mobileNumber&#x27;: &#x27;9036890379&#x27;, &#x27;Otp&#x27;: 905972}
+{
+    &quot;errorMessage&quot;: &quot;None&quot;,
+    &quot;status&quot;: 500,
+    &quot;displayMessage&quot;: &quot;internal server error&quot;
+}
+500
+{&#x27;Server&#x27;: &#x27;nginx/1.15.0&#x27;, &#x27;Date&#x27;: &#x27;Wed, 12 Sep 2018 09:29:48 GMT&#x27;, &#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Content-Length&#x27;: &#x27;77&#x27;, &#x27;Connection&#x27;: &#x27;keep-alive&#x27;, &#x27;X-Frame-Options&#x27;: &#x27;SAMEORIGIN&#x27;, &#x27;Vary&#x27;: &#x27;Accept, Cookie&#x27;, &#x27;Allow&#x27;: &#x27;POST, OPTIONS&#x27;}
+</div></td></tr></tbody>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">Run.py::ResendOTP::test_Resend_OTP</td>
+          <td class="col-duration">2.23</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;test_ResendOTP.ResendOTP testMethod=test_Resend_OTP&gt;<br/><br/>    @pytest.mark.run(order=5)<br/>    def test_Resend_OTP(self):<br/>        with open(&#x27;responsedata.json&#x27;) as f:<br/>            applicationId = json.loads(f.read())<br/>            applicationId = applicationId[&#x27;applicationId&#x27;]<br/>            print(applicationId)<br/>    <br/>        url = str(EnvironmentRead.ipPort) + &quot;/saveyra/v1/users/&quot; + applicationId + &quot;/resendotp?access_token={0}&quot;.format(EnvironmentRead.access_token)<br/>    <br/>    <br/>        with open(&#x27;responsedata.json&#x27;) as f:<br/>            sessionKey = json.loads(f.read())<br/>            sessionKey = sessionKey[&#x27;sessionKey&#x27;]<br/>            print(sessionKey)<br/>    <br/>        headers = {&#x27;Content-type&#x27;: &#x27;application/json&#x27;, &#x27;SessionKey&#x27;: sessionKey}<br/>    <br/>        body = {<br/>    <br/>            &#x27;mobileNumber&#x27;: &#x27;1234567890&#x27;<br/>        }<br/>        response = requests.post(url, data=json.dumps(body), headers=headers)<br/>        print(json.dumps(response.json(), indent=4))<br/>        print(response.status_code)<br/>        print(response.headers)<br/>&gt;       self.assertEqual(200, response.status_code)<br/><span class="error">E       AssertionError: 200 != 500</span><br/><br/>test_ResendOTP.py:35: AssertionError<br/>----------------------------- Captured stdout call -----------------------------<br/>03071aeb-d97d-47f5-bb17-49e889b99fdb
+e6af38dd-ee21-4090-92b7-13990b6b2bb7
+{
+    &quot;errorMessage&quot;: &quot;None&quot;,
+    &quot;status&quot;: 500,
+    &quot;displayMessage&quot;: &quot;internal server error&quot;
+}
+500
+{&#x27;Server&#x27;: &#x27;nginx/1.15.0&#x27;, &#x27;Date&#x27;: &#x27;Wed, 12 Sep 2018 09:29:50 GMT&#x27;, &#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Content-Length&#x27;: &#x27;77&#x27;, &#x27;Connection&#x27;: &#x27;keep-alive&#x27;, &#x27;X-Frame-Options&#x27;: &#x27;SAMEORIGIN&#x27;, &#x27;Vary&#x27;: &#x27;Accept, Cookie&#x27;, &#x27;Allow&#x27;: &#x27;POST, OPTIONS&#x27;}
+</div></td></tr></tbody>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">Run.py::Login::test_login</td>
+          <td class="col-duration">1.09</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;test_Login.Login testMethod=test_login&gt;<br/><br/>    @pytest.mark.run(order=9)<br/>    def test_login(self):<br/>        with open(&#x27;responsedata.json&#x27;) as f:<br/>            applicationId = json.loads(f.read())<br/>            applicationId = applicationId[&#x27;applicationId&#x27;]<br/>            print(applicationId)<br/>    <br/>            url = str(<br/>                EnvironmentRead.ipPort) + &quot;/saveyra/v1/users/&quot; + applicationId + &quot;/login?access_token={0}&quot;.format(EnvironmentRead.access_token)<br/>            headers = {&#x27;Content-type&#x27;: &#x27;application/json&#x27;}<br/>    <br/>            body = {<br/>                &#x27;user&#x27;: &#x27;9036890379&#x27;,<br/>                &#x27;channel&#x27;: &#x27;Mobile&#x27;<br/>            }<br/>    <br/>            response = requests.post(url, data=json.dumps(body), headers=headers, verify=False)<br/>            print(json.dumps(response.json(), indent=4))<br/>            print(response.status_code)<br/>&gt;           self.assertEqual(200, response.status_code)<br/><span class="error">E           AssertionError: 200 != 500</span><br/><br/>test_Login.py:29: AssertionError<br/>----------------------------- Captured stdout call -----------------------------<br/>03071aeb-d97d-47f5-bb17-49e889b99fdb
+{
+    &quot;errorMessage&quot;: &quot;None&quot;,
+    &quot;status&quot;: 500,
+    &quot;displayMessage&quot;: &quot;internal server error&quot;
+}
+500
+</div></td></tr></tbody>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">Run.py::Feedback::test_feedback</td>
+          <td class="col-duration">1.57</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;test_Feedback.Feedback testMethod=test_feedback&gt;<br/><br/>    @pytest.mark.run(order=13)<br/>    def test_feedback(self):<br/>        with open(&#x27;responsedata.json&#x27;) as f:<br/>            applicationId = json.loads(f.read())<br/>            applicationId = applicationId[&#x27;applicationId&#x27;]<br/>            print(applicationId)<br/>    <br/>        url = str(EnvironmentRead.ipPort) + &quot;/saveyra/v1/users/&quot; + applicationId + &quot;/feedback?access_token={0}&quot;.format(EnvironmentRead.access_token)<br/>    <br/>    <br/>        with open(&#x27;responsedata.json&#x27;) as f:<br/>            sessionKey = json.loads(f.read())<br/>            sessionKey = sessionKey[&#x27;sessionKey&#x27;]<br/>            print(sessionKey)<br/>    <br/>        with open(&#x27;responsedata1.json&#x27;) as f:<br/>            userKey = json.loads(f.read())<br/>            userKey = userKey[&#x27;userKey&#x27;]<br/>            print(userKey)<br/>    <br/>        headers = {&#x27;Content-type&#x27;: &#x27;application/json&#x27;, &#x27;SessionKey&#x27;: sessionKey, &#x27;UserKey&#x27;: userKey}<br/>    <br/>        body = {<br/>            &quot;reason&quot;: &quot;sasa&quot;,<br/>            &quot;message&quot;: &quot;sasa&quot;<br/>    <br/>        }<br/>    <br/>        response = requests.post(url, data=json.dumps(body), headers=headers)<br/>        print(json.dumps(response.json(), indent=4))<br/>        print(response.status_code)<br/>&gt;       self.assertEqual(200, response.status_code)<br/><span class="error">E       AssertionError: 200 != 500</span><br/><br/>test_Feedback.py:41: AssertionError<br/>----------------------------- Captured stdout call -----------------------------<br/>03071aeb-d97d-47f5-bb17-49e889b99fdb
+e6af38dd-ee21-4090-92b7-13990b6b2bb7
+b6d9ed5a-351f-4416-a09b-7149583c5a50
+{
+    &quot;errorMessage&quot;: &quot;None&quot;,
+    &quot;status&quot;: 500,
+    &quot;displayMessage&quot;: &quot;internal server error&quot;
+}
+500
+</div></td></tr></tbody>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">Run.py::ContactUs::test_contactus</td>
+          <td class="col-duration">1.94</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;test_Contactus.ContactUs testMethod=test_contactus&gt;<br/><br/>    @pytest.mark.run(order=14)<br/>    def test_contactus(self):<br/>        with open(&#x27;responsedata.json&#x27;) as f:<br/>            applicationId = json.loads(f.read())<br/>            applicationId = applicationId[&#x27;applicationId&#x27;]<br/>            print(applicationId)<br/>    <br/>        url = str(EnvironmentRead.ipPort) + &quot;/saveyra/v1/users/&quot; + applicationId + &quot;/contactus?access_token={0}&quot;.format(EnvironmentRead.access_token)<br/>    <br/>        with open(&#x27;responsedata.json&#x27;) as f:<br/>            sessionKey = json.loads(f.read())<br/>            sessionKey = sessionKey[&#x27;sessionKey&#x27;]<br/>            print(sessionKey)<br/>    <br/>        with open(&#x27;responsedata1.json&#x27;) as f:<br/>            userKey = json.loads(f.read())<br/>            userKey = userKey[&#x27;userKey&#x27;]<br/>            print(userKey)<br/>    <br/>        headers = {&#x27;Content-type&#x27;: &#x27;application/json&#x27;, &#x27;SessionKey&#x27;: sessionKey, &#x27;UserKey&#x27;: userKey}<br/>    <br/>        body = {<br/>    <br/>            &#x27;name&#x27;: &quot;sasa&quot;,<br/>            &#x27;message&#x27;: &#x27;sasa&#x27;,<br/>            &quot;emailAddress&quot;: &#x27;Raj@gmail.com&#x27;,<br/>            &#x27;purpose&#x27;: &#x27;sasa&#x27;<br/>        }<br/>        response = requests.post(url, data=json.dumps(body), headers=headers)<br/>        print(json.dumps(response.json(), indent=4))<br/>        print(response.status_code)<br/>&gt;       self.assertEqual(200 , response.status_code)<br/><span class="error">E       AssertionError: 200 != 500</span><br/><br/>test_Contactus.py:41: AssertionError<br/>----------------------------- Captured stdout call -----------------------------<br/>03071aeb-d97d-47f5-bb17-49e889b99fdb
+e6af38dd-ee21-4090-92b7-13990b6b2bb7
+b6d9ed5a-351f-4416-a09b-7149583c5a50
+{
+    &quot;errorMessage&quot;: &quot;None&quot;,
+    &quot;status&quot;: 500,
+    &quot;displayMessage&quot;: &quot;internal server error&quot;
+}
+500
+</div></td></tr></tbody>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">Run.py::FBRegister::test_FbRegistration</td>
+          <td class="col-duration">1.10</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;test_Facebook_Registration.FBRegister testMethod=test_FbRegistration&gt;<br/><br/>    @pytest.mark.repeat(3)<br/>    def test_FbRegistration(self):<br/>    <br/>        url = str(<br/>            EnvironmentRead.ipPort) + &quot;/saveyra/v1/users/registr?access_token={0}&quot;.format(EnvironmentRead.access_token)<br/>    <br/>        with open(&#x27;responsedata.json&#x27;) as f:<br/>            sessionKey = json.loads(f.read())<br/>            sessionKey = sessionKey[&#x27;sessionKey&#x27;]<br/>            print(sessionKey)<br/>    <br/>        with open(&#x27;responsedata1.json&#x27;) as f:<br/>            userKey = json.loads(f.read())<br/>            userKey = userKey[&#x27;userKey&#x27;]<br/>            print(userKey)<br/>    <br/>        headers = {&#x27;Content-type&#x27;: &#x27;application/json&#x27;, &#x27;SessionKey&#x27;: sessionKey, &#x27;userKey&#x27;: userKey}<br/>    <br/>        with open(&#x27;responsedata.json&#x27;) as f:<br/>            applicationId = json.loads(f.read())<br/>            applicationId = applicationId[&#x27;applicationId&#x27;]<br/>            print(applicationId)<br/>    <br/>        body = {<br/>    <br/>            &#x27;applicationId&#x27;: applicationId,<br/>            &#x27;channel&#x27;: &#x27;Fb&#x27;,<br/>            &#x27;mobileNumber&#x27;: None,<br/>            &#x27;facebookId&#x27;: &#x27;175092446687192&#x27;,<br/>            &#x27;token&#x27;: &#x27;EAAawg1UbqnoBAKrc0fMWcwO9msLatBs1p0vn4nbWTHuCpq02Jyje7NpqiA6fZA3PO4hZBNpe6PBq9r6gVmGW5YnTpeIx6r6WVhwjy&#x27;<br/>                     &#x27;VRZAZAKYDPAjZAD9wBL0wlGeZAUU9rTFblzW3o13e1Yjq4o8iKwHxAdHerisMnbT6rRWsngZDZD&#x27;<br/>        }<br/>    <br/>        response = requests.post(url, data=json.dumps(body), headers=headers, )<br/>&gt;       print(json.dumps(response.json(), indent=4))<br/><br/>test_Facebook_Registration.py:45: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/>c:\users\manjunath\appdata\local\programs\python\python37-32\lib\site-packages\requests\models.py:896: in json<br/>    return complexjson.loads(self.text, **kwargs)<br/>c:\users\manjunath\appdata\local\programs\python\python37-32\lib\json\__init__.py:348: in loads<br/>    return _default_decoder.decode(s)<br/>c:\users\manjunath\appdata\local\programs\python\python37-32\lib\json\decoder.py:337: in decode<br/>    obj, end = self.raw_decode(s, idx=_w(s, 0).end())<br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/><br/>self = &lt;json.decoder.JSONDecoder object at 0x052460D0&gt;<br/>s = &#x27;&lt;h1&gt;Not Found&lt;/h1&gt;&lt;p&gt;The requested URL /saveyra/v1/users/registr was not found on this server.&lt;/p&gt;&#x27;<br/>idx = 0<br/><br/>    def raw_decode(self, s, idx=0):<br/>        &quot;&quot;&quot;Decode a JSON document from ``s`` (a ``str`` beginning with<br/>            a JSON document) and return a 2-tuple of the Python<br/>            representation and the index in ``s`` where the document ended.<br/>    <br/>            This can be used to decode a JSON document from a string that may<br/>            have extraneous data at the end.<br/>    <br/>            &quot;&quot;&quot;<br/>        try:<br/>            obj, end = self.scan_once(s, idx)<br/>        except StopIteration as err:<br/>&gt;           raise JSONDecodeError(&quot;Expecting value&quot;, s, err.value) from None<br/><span class="error">E           json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)</span><br/><br/>c:\users\manjunath\appdata\local\programs\python\python37-32\lib\json\decoder.py:355: JSONDecodeError<br/>----------------------------- Captured stdout call -----------------------------<br/>e6af38dd-ee21-4090-92b7-13990b6b2bb7
+b6d9ed5a-351f-4416-a09b-7149583c5a50
+03071aeb-d97d-47f5-bb17-49e889b99fdb
+</div></td></tr></tbody>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">Run.py::FBRegisterMobile::test_FbRegistrationMobile</td>
+          <td class="col-duration">2.06</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;test_Facebook_Registration_Mobile.FBRegisterMobile testMethod=test_FbRegistrationMobile&gt;<br/><br/>    def test_FbRegistrationMobile(self):<br/>        url = str(<br/>            EnvironmentRead.ipPort) + &quot;/saveyra/v1/users/registr?access_token={0}&quot;.format(EnvironmentRead.access_token)<br/>    <br/>        with open(&#x27;responsedata.json&#x27;) as f:<br/>            sessionKey = json.loads(f.read())<br/>            sessionKey = sessionKey[&#x27;sessionKey&#x27;]<br/>            print(sessionKey)<br/>    <br/>        with open(&#x27;responsedata1.json&#x27;) as f:<br/>            userKey = json.loads(f.read())<br/>            userKey = userKey[&#x27;userKey&#x27;]<br/>            print(userKey)<br/>    <br/>        headers = {&#x27;Content-type&#x27;: &#x27;application/json&#x27;, &#x27;SessionKey&#x27;: sessionKey, &#x27;userKey&#x27;: userKey}<br/>    <br/>        with open(&#x27;responsedata.json&#x27;) as f:<br/>            applicationId = json.loads(f.read())<br/>            applicationId = applicationId[&#x27;applicationId&#x27;]<br/>            print(applicationId)<br/>    <br/>        body = {<br/>    <br/>            &#x27;applicationId&#x27;: applicationId,<br/>            &#x27;channel&#x27;: &#x27;mobile&#x27;,<br/>            &#x27;mobileNumber&#x27;: &#x27;12342345000&#x27;,<br/>            &#x27;facebookId&#x27;: &#x27;175092446687192&#x27;,<br/>            &#x27;token&#x27;: &#x27;EAAawg1UbqnoBAKrc0fMWcwO9msLatBs1p0vn4nbWTHuCpq02Jyje7NpqiA6fZA3PO4hZBNpe6PBq9r6gVmGW5YnTpeIx6r6WVhwjy&#x27;<br/>                     &#x27;VRZAZAKYDPAjZAD9wBL0wlGeZAUU9rTFblzW3o13e1Yjq4o8iKwHxAdHerisMnbT6rRWsngZDZD&#x27;<br/>        }<br/>    <br/>        response = requests.post(url, data=json.dumps(body), headers=headers, )<br/>&gt;       print(json.dumps(response.json(), indent=4))<br/><br/>test_Facebook_Registration_Mobile.py:49: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/>c:\users\manjunath\appdata\local\programs\python\python37-32\lib\site-packages\requests\models.py:896: in json<br/>    return complexjson.loads(self.text, **kwargs)<br/>c:\users\manjunath\appdata\local\programs\python\python37-32\lib\json\__init__.py:348: in loads<br/>    return _default_decoder.decode(s)<br/>c:\users\manjunath\appdata\local\programs\python\python37-32\lib\json\decoder.py:337: in decode<br/>    obj, end = self.raw_decode(s, idx=_w(s, 0).end())<br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _<br/><br/>self = &lt;json.decoder.JSONDecoder object at 0x052460D0&gt;<br/>s = &#x27;&lt;h1&gt;Not Found&lt;/h1&gt;&lt;p&gt;The requested URL /saveyra/v1/users/registr was not found on this server.&lt;/p&gt;&#x27;<br/>idx = 0<br/><br/>    def raw_decode(self, s, idx=0):<br/>        &quot;&quot;&quot;Decode a JSON document from ``s`` (a ``str`` beginning with<br/>            a JSON document) and return a 2-tuple of the Python<br/>            representation and the index in ``s`` where the document ended.<br/>    <br/>            This can be used to decode a JSON document from a string that may<br/>            have extraneous data at the end.<br/>    <br/>            &quot;&quot;&quot;<br/>        try:<br/>            obj, end = self.scan_once(s, idx)<br/>        except StopIteration as err:<br/>&gt;           raise JSONDecodeError(&quot;Expecting value&quot;, s, err.value) from None<br/><span class="error">E           json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)</span><br/><br/>c:\users\manjunath\appdata\local\programs\python\python37-32\lib\json\decoder.py:355: JSONDecodeError<br/>----------------------------- Captured stdout call -----------------------------<br/>this is case level setup
+e6af38dd-ee21-4090-92b7-13990b6b2bb7
+b6d9ed5a-351f-4416-a09b-7149583c5a50
+03071aeb-d97d-47f5-bb17-49e889b99fdb
+this is case level teardown
+</div></td></tr></tbody>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">Run.py::FbUserProfilePUTmobile::test_FBbuserprofilePUTmobile</td>
+          <td class="col-duration">1.15</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;test_Facebook_Userprofile_PUT_Mobile.FbUserProfilePUTmobile testMethod=test_FBbuserprofilePUTmobile&gt;<br/><br/>    def test_FBbuserprofilePUTmobile(self):<br/>        with open(&#x27;responsedata.json&#x27;) as f:<br/>            applicationId = json.loads(f.read())<br/>            applicationId = applicationId[&#x27;applicationId&#x27;]<br/>            print(applicationId)<br/>    <br/>            url = str(EnvironmentRead.ipPort) + &quot;/saveyra/v1/users/&quot; + applicationId + &quot;/profile?&quot; \<br/>                                                                                       &quot;channel=mobile&amp;access_token={0}&quot;.format(EnvironmentRead.access_token)<br/>    <br/>            with open(&#x27;responsedata.json&#x27;) as f:<br/>                sessionKey = json.loads(f.read())<br/>                sessionKey = sessionKey[&#x27;sessionKey&#x27;]<br/>                print(sessionKey)<br/>    <br/>            with open(&#x27;responsedata1.json&#x27;) as f:<br/>                userKey = json.loads(f.read())<br/>                userKey = userKey[&#x27;userKey&#x27;]<br/>                print(userKey)<br/>    <br/>            headers = {&#x27;Content-type&#x27;: &#x27;application/json&#x27;, &#x27;SessionKey&#x27;: sessionKey, &#x27;UserKey&#x27;: userKey}<br/>    <br/>            body = {<br/>    <br/>                &#x27;education&#x27;: &#x27;BE&#x27;,<br/>                &#x27;channel&#x27;: &#x27;mobile&#x27;,<br/>                &#x27;email&#x27;: &#x27;deepthi@silverminegroup.com&#x27;,<br/>                &#x27;mobileNumber&#x27;: &#x27;9036890379&#x27;,<br/>                &#x27;name&#x27;: &#x27;&#x27;,<br/>                &#x27;language&#x27;: &#x27;&#x27;,<br/>                &#x27;gender&#x27;: &#x27;&#x27;<br/>            }<br/>    <br/>            response = requests.put(url, data=json.dumps(body), headers=headers)<br/>            print(json.dumps(response.json(), indent=4))<br/>            print(response.status_code)<br/>            print(response.headers)<br/>&gt;           self.assertEqual(200, response.status_code)<br/><span class="error">E           AssertionError: 200 != 404</span><br/><br/>test_Facebook_Userprofile_PUT_Mobile.py:53: AssertionError<br/>----------------------------- Captured stdout call -----------------------------<br/>this is case level setup
+03071aeb-d97d-47f5-bb17-49e889b99fdb
+e6af38dd-ee21-4090-92b7-13990b6b2bb7
+b6d9ed5a-351f-4416-a09b-7149583c5a50
+{
+    &quot;errorMessage&quot;: &quot;mobile_user_profile matching query does not exist.&quot;,
+    &quot;status&quot;: 404,
+    &quot;displayMessage&quot;: &quot;no data found&quot;
+}
+404
+{&#x27;Server&#x27;: &#x27;nginx/1.15.0&#x27;, &#x27;Date&#x27;: &#x27;Wed, 12 Sep 2018 09:30:14 GMT&#x27;, &#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Content-Length&#x27;: &#x27;115&#x27;, &#x27;Connection&#x27;: &#x27;keep-alive&#x27;, &#x27;X-Frame-Options&#x27;: &#x27;SAMEORIGIN&#x27;, &#x27;Vary&#x27;: &#x27;Accept, Cookie&#x27;, &#x27;Allow&#x27;: &#x27;GET, PUT, DELETE, HEAD, OPTIONS&#x27;}
+this is case level teardown
+</div></td></tr></tbody>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">Run.py::FacebookUserProfileGET_Mobile::test_FB_serprofile_GETmobile</td>
+          <td class="col-duration">1.08</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">self = &lt;test_Facebook_Userprofile_GET_Mobile.FacebookUserProfileGET_Mobile testMethod=test_FB_serprofile_GETmobile&gt;<br/><br/>    def test_FB_serprofile_GETmobile(self):<br/>        with open(&#x27;responsedata.json&#x27;) as f:<br/>            applicationId = json.loads(f.read())<br/>            applicationId = applicationId[&#x27;applicationId&#x27;]<br/>            print(applicationId)<br/>    <br/>            url = str(EnvironmentRead.ipPort) + &quot;/saveyra/v1/users/&quot; + applicationId + &quot;/profile?&quot; \<br/>                                                                                       &quot;channel=mobile&amp;access_token={0}&quot;.format(EnvironmentRead.access_token)<br/>    <br/>        with open(&#x27;responsedata.json&#x27;) as f:<br/>            sessionKey = json.loads(f.read())<br/>            sessionKey = sessionKey[&#x27;sessionKey&#x27;]<br/>            print(sessionKey)<br/>    <br/>        with open(&#x27;responsedata1.json&#x27;) as f:<br/>            userKey = json.loads(f.read())<br/>            userKey = userKey[&#x27;userKey&#x27;]<br/>            print(userKey)<br/>    <br/>            headers = {&#x27;Content-type&#x27;: &#x27;application/json&#x27;, &#x27;SessionKey&#x27;: sessionKey, &#x27;UserKey&#x27;: userKey}<br/>    <br/>            body = {<br/>    <br/>                &#x27;education&#x27;: &#x27;BE&#x27;,<br/>                &#x27;channel&#x27;: &#x27;Fb&#x27;,<br/>                &#x27;email&#x27;: &#x27;deepthi@silverminegroup.com&#x27;,<br/>                &#x27;mobileNumber&#x27;: &#x27;8101112839&#x27;,<br/>                &#x27;name&#x27;: &#x27;&#x27;,<br/>                &#x27;language&#x27;: &#x27;&#x27;,<br/>                &#x27;gender&#x27;: &#x27;&#x27;<br/>            }<br/>    <br/>            response = requests.get(url, data=json.dumps(body), headers=headers)<br/>            print(json.dumps(response.json(), indent=4))<br/>            print(response.status_code)<br/>            print(response.headers)<br/>&gt;           self.assertEqual(200, response.status_code)<br/><span class="error">E           AssertionError: 200 != 404</span><br/><br/>test_Facebook_Userprofile_GET_Mobile.py:53: AssertionError<br/>----------------------------- Captured stdout call -----------------------------<br/>this is case level setup
+03071aeb-d97d-47f5-bb17-49e889b99fdb
+e6af38dd-ee21-4090-92b7-13990b6b2bb7
+b6d9ed5a-351f-4416-a09b-7149583c5a50
+{
+    &quot;errorMessage&quot;: &quot;mobile_user_profile matching query does not exist.&quot;,
+    &quot;status&quot;: 404,
+    &quot;displayMessage&quot;: &quot;no data found&quot;
+}
+404
+{&#x27;Server&#x27;: &#x27;nginx/1.15.0&#x27;, &#x27;Date&#x27;: &#x27;Wed, 12 Sep 2018 09:30:15 GMT&#x27;, &#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Content-Length&#x27;: &#x27;115&#x27;, &#x27;Connection&#x27;: &#x27;keep-alive&#x27;, &#x27;X-Frame-Options&#x27;: &#x27;SAMEORIGIN&#x27;, &#x27;Vary&#x27;: &#x27;Accept, Cookie&#x27;, &#x27;Allow&#x27;: &#x27;GET, PUT, DELETE, HEAD, OPTIONS&#x27;}
+this is case level teardown
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Run.py::UserCreate::test_usercreate</td>
+          <td class="col-duration">1.14</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>59201a07-d8c8-4580-9229-0d368f6386fe
+a083b49e-2ad4-435c-aed6-e42178e2b89e
+{
+    &quot;applicationId&quot;: &quot;03071aeb-d97d-47f5-bb17-49e889b99fdb&quot;,
+    &quot;userProfile&quot;: {},
+    &quot;avatarDetails&quot;: &quot;&quot;,
+    &quot;userSettings&quot;: {},
+    &quot;noficationPreferences&quot;: {},
+    &quot;sessionKey&quot;: &quot;e6af38dd-ee21-4090-92b7-13990b6b2bb7&quot;
+}
+200
+{&#x27;Server&#x27;: &#x27;nginx/1.15.0&#x27;, &#x27;Date&#x27;: &#x27;Wed, 12 Sep 2018 09:29:43 GMT&#x27;, &#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Content-Length&#x27;: &#x27;189&#x27;, &#x27;Connection&#x27;: &#x27;keep-alive&#x27;, &#x27;X-Frame-Options&#x27;: &#x27;SAMEORIGIN&#x27;, &#x27;Vary&#x27;: &#x27;Accept, Cookie&#x27;, &#x27;Allow&#x27;: &#x27;POST, OPTIONS&#x27;}
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Run.py::ReadOTP::test_ReadOTP</td>
+          <td class="col-duration">1.10</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>e6af38dd-ee21-4090-92b7-13990b6b2bb7
+&quot;905972,{&#x27;mobileNumber&#x27;: &#x27;9036890379&#x27;, &#x27;Otp&#x27;: 905972}&quot;
+905972,{&#x27;mobileNumber&#x27;: &#x27;9036890379&#x27;, &#x27;Otp&#x27;: 905972}
+200
+{&#x27;Server&#x27;: &#x27;nginx/1.15.0&#x27;, &#x27;Date&#x27;: &#x27;Wed, 12 Sep 2018 09:29:47 GMT&#x27;, &#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Content-Length&#x27;: &#x27;54&#x27;, &#x27;Connection&#x27;: &#x27;keep-alive&#x27;, &#x27;X-Frame-Options&#x27;: &#x27;SAMEORIGIN&#x27;, &#x27;Vary&#x27;: &#x27;Accept, Cookie&#x27;, &#x27;Allow&#x27;: &#x27;GET, HEAD, OPTIONS&#x27;}
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Run.py::UserProfilePUT::test_Userprofile_PUT</td>
+          <td class="col-duration">1.13</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>03071aeb-d97d-47f5-bb17-49e889b99fdb
+b6d9ed5a-351f-4416-a09b-7149583c5a50
+e6af38dd-ee21-4090-92b7-13990b6b2bb7
+{
+    &quot;errorMessage&quot;: &quot;mobile_user_profile matching query does not exist.&quot;,
+    &quot;status&quot;: 404,
+    &quot;displayMessage&quot;: &quot;no data found&quot;
+}
+404
+{&#x27;Server&#x27;: &#x27;nginx/1.15.0&#x27;, &#x27;Date&#x27;: &#x27;Wed, 12 Sep 2018 09:29:51 GMT&#x27;, &#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Content-Length&#x27;: &#x27;115&#x27;, &#x27;Connection&#x27;: &#x27;keep-alive&#x27;, &#x27;X-Frame-Options&#x27;: &#x27;SAMEORIGIN&#x27;, &#x27;Vary&#x27;: &#x27;Accept, Cookie&#x27;, &#x27;Allow&#x27;: &#x27;GET, PUT, DELETE, HEAD, OPTIONS&#x27;}
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Run.py::UserProfileGET::test_UserprofileGET</td>
+          <td class="col-duration">1.17</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>03071aeb-d97d-47f5-bb17-49e889b99fdb
+e6af38dd-ee21-4090-92b7-13990b6b2bb7
+b6d9ed5a-351f-4416-a09b-7149583c5a50
+{
+    &quot;errorMessage&quot;: &quot;mobile_user_profile matching query does not exist.&quot;,
+    &quot;status&quot;: 404,
+    &quot;displayMessage&quot;: &quot;no data found&quot;
+}
+404
+{&#x27;Server&#x27;: &#x27;nginx/1.15.0&#x27;, &#x27;Date&#x27;: &#x27;Wed, 12 Sep 2018 09:29:52 GMT&#x27;, &#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Content-Length&#x27;: &#x27;115&#x27;, &#x27;Connection&#x27;: &#x27;keep-alive&#x27;, &#x27;X-Frame-Options&#x27;: &#x27;SAMEORIGIN&#x27;, &#x27;Vary&#x27;: &#x27;Accept, Cookie&#x27;, &#x27;Allow&#x27;: &#x27;GET, PUT, DELETE, HEAD, OPTIONS&#x27;}
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Run.py::RefreshToken::test_refreshtoken</td>
+          <td class="col-duration">1.15</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>03071aeb-d97d-47f5-bb17-49e889b99fdb
+{
+    &quot;applicationId&quot;: &quot;03071aeb-d97d-47f5-bb17-49e889b99fdb&quot;,
+    &quot;sessionKey&quot;: &quot;e6af38dd-ee21-4090-92b7-13990b6b2bb7&quot;
+}
+200
+{&#x27;Server&#x27;: &#x27;nginx/1.15.0&#x27;, &#x27;Date&#x27;: &#x27;Wed, 12 Sep 2018 09:29:54 GMT&#x27;, &#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Content-Length&#x27;: &#x27;108&#x27;, &#x27;Connection&#x27;: &#x27;keep-alive&#x27;, &#x27;X-Frame-Options&#x27;: &#x27;SAMEORIGIN&#x27;, &#x27;Vary&#x27;: &#x27;Accept, Cookie&#x27;, &#x27;Allow&#x27;: &#x27;GET, HEAD, OPTIONS&#x27;}
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Run.py::NotificationPreferencesPUT::test_notificationpreferencesPUT</td>
+          <td class="col-duration">1.13</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>03071aeb-d97d-47f5-bb17-49e889b99fdb
+e6af38dd-ee21-4090-92b7-13990b6b2bb7
+{
+    &quot;contentType&quot;: &quot;&quot;,
+    &quot;status&quot;: &quot;False&quot;,
+    &quot;ringtone&quot;: &quot;&quot;,
+    &quot;frequency&quot;: &quot;&quot;,
+    &quot;userId&quot;: &quot;NA&quot;
+}
+200
+{&#x27;Server&#x27;: &#x27;nginx/1.15.0&#x27;, &#x27;Date&#x27;: &#x27;Wed, 12 Sep 2018 09:29:56 GMT&#x27;, &#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Content-Length&#x27;: &#x27;78&#x27;, &#x27;Connection&#x27;: &#x27;keep-alive&#x27;, &#x27;X-Frame-Options&#x27;: &#x27;SAMEORIGIN&#x27;, &#x27;Vary&#x27;: &#x27;Accept, Cookie&#x27;, &#x27;Allow&#x27;: &#x27;GET, PUT, HEAD, OPTIONS&#x27;}
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Run.py::NotificationPreferencesGET::test_notificationpreferencesGET</td>
+          <td class="col-duration">1.16</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>03071aeb-d97d-47f5-bb17-49e889b99fdb
+e6af38dd-ee21-4090-92b7-13990b6b2bb7
+{
+    &quot;applicationId&quot;: &quot;03071aeb-d97d-47f5-bb17-49e889b99fdb&quot;,
+    &quot;status&quot;: &quot;False&quot;,
+    &quot;ringtone&quot;: &quot;&quot;,
+    &quot;userId&quot;: &quot;NA&quot;,
+    &quot;contentType&quot;: &quot;&quot;,
+    &quot;frequency&quot;: &quot;&quot;
+}
+200
+{&#x27;Server&#x27;: &#x27;nginx/1.15.0&#x27;, &#x27;Date&#x27;: &#x27;Wed, 12 Sep 2018 09:29:57 GMT&#x27;, &#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Content-Length&#x27;: &#x27;133&#x27;, &#x27;Connection&#x27;: &#x27;keep-alive&#x27;, &#x27;X-Frame-Options&#x27;: &#x27;SAMEORIGIN&#x27;, &#x27;Vary&#x27;: &#x27;Accept, Cookie&#x27;, &#x27;Allow&#x27;: &#x27;GET, PUT, HEAD, OPTIONS&#x27;}
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Run.py::KeyboardHomeScreen::test_keyboardhomescreen</td>
+          <td class="col-duration">1.27</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>03071aeb-d97d-47f5-bb17-49e889b99fdb
+e6af38dd-ee21-4090-92b7-13990b6b2bb7
+b6d9ed5a-351f-4416-a09b-7149583c5a50
+{
+    &quot;stickers&quot;: [
+        {
+            &quot;subcategory&quot;: &quot;Daily Talk Phrases&quot;,
+            &quot;tokens&quot;: &quot;null&quot;,
+            &quot;paidStickers&quot;: &quot;True&quot;,
+            &quot;expiry&quot;: &quot;03/01/34&quot;,
+            &quot;imageId&quot;: &quot;Love-DD06&quot;,
+            &quot;category&quot;: &quot;Greetings&quot;,
+            &quot;imageType&quot;: &quot;Sticker&quot;,
+            &quot;imageExtension&quot;: &quot;.png&quot;,
+            &quot;imagepath&quot;: &quot;https://saveyraassets.s3.amazonaws.com/django-s3/cms-content/test-upload/temp/Love-DD06&quot;,
+            &quot;imageSizeFormat&quot;: &quot;_80x80,_160x160,_240x240,_360x360,_720x720,_750x750&quot;,
+            &quot;keywords&quot;: &quot;girl,flying kiss,kiss,blow,blowing kisses,kisses,blow a kiss,hearts,love,spring time,summer girl,romance in the air,love is in the air,beautiful girl,blue top&quot;
+        },
+        {
+            &quot;subcategory&quot;: &quot;Daily Talk Phrases&quot;,
+            &quot;tokens&quot;: &quot;null&quot;,
+            &quot;paidStickers&quot;: &quot;True&quot;,
+            &quot;expiry&quot;: &quot;03/01/34&quot;,
+            &quot;imageId&quot;: &quot;NAL01&quot;,
+            &quot;category&quot;: &quot;Greetings&quot;,
+            &quot;imageType&quot;: &quot;Sticker&quot;,
+            &quot;imageExtension&quot;: &quot;.png&quot;,
+            &quot;imagepath&quot;: &quot;https://saveyraassets.s3.amazonaws.com/django-s3/cms-content/test-upload/temp/NAL01_DTP_GRT_ST_DD07&quot;,
+            &quot;imageSizeFormat&quot;: &quot;_80x80,_160x160,_240x240,_360x360,_720x720,_750x750&quot;,
+            &quot;keywords&quot;: &quot;ma&#x27;am,strict mam,school teacher,headmistress,discipline,tough teacher,punishment,strict madam&quot;
+        },
+        {
+            &quot;subcategory&quot;: &quot;Daily Talk Phrases&quot;,
+            &quot;tokens&quot;: &quot;null&quot;,
+            &quot;paidStickers&quot;: &quot;True&quot;,
+            &quot;expiry&quot;: &quot;03/01/34&quot;,
+            &quot;imageId&quot;: &quot;Good1&quot;,
+            &quot;category&quot;: &quot;Greetings&quot;,
+            &quot;imageType&quot;: &quot;Sticker&quot;,
+            &quot;imageExtension&quot;: &quot;.png&quot;,
+            &quot;imagepath&quot;: &quot;https://saveyraassets.s3.amazonaws.com/django-s3/cms-content/test-upload/temp/Good1_Morning_female%20%281%29&quot;,
+            &quot;imageSizeFormat&quot;: &quot;_80x80,_160x160,_240x240,_360x360,_720x720,_750x750&quot;,
+            &quot;keywords&quot;: &quot;rise and shine,good morning,morning,nature,bright day ahead,happy girl,happy day,birds chirping,beautiful day,pristine,positive vibes&quot;
+        },
+        {
+            &quot;subcategory&quot;: &quot;Daily Talk Phrases&quot;,
+            &quot;tokens&quot;: &quot;null&quot;,
+            &quot;paidStickers&quot;: &quot;True&quot;,
+            &quot;expiry&quot;: &quot;03/01/34&quot;,
+            &quot;imageId&quot;: &quot;Joker&quot;,
+            &quot;category&quot;: &quot;Greetings&quot;,
+            &quot;imageType&quot;: &quot;Sticker&quot;,
+            &quot;imageExtension&quot;: &quot;.png&quot;,
+            &quot;imagepath&quot;: &quot;https://saveyraassets.s3.amazonaws.com/django-s3/cms-content/test-upload/temp/Joker&quot;,
+            &quot;imageSizeFormat&quot;: &quot;_80x80,_160x160,_240x240,_360x360,_720x720,_750x750&quot;,
+            &quot;keywords&quot;: &quot;joker,circus,fun time,juggling,colorful joker,circus masti,trick,funny joker&quot;
+        },
+        {
+            &quot;subcategory&quot;: &quot;Daily Talk Phrases&quot;,
+            &quot;tokens&quot;: &quot;null&quot;,
+            &quot;paidStickers&quot;: &quot;True&quot;,
+            &quot;expiry&quot;: &quot;03/01/34&quot;,
+            &quot;imageId&quot;: &quot;DDSY&quot;,
+            &quot;category&quot;: &quot;Greetings&quot;,
+            &quot;imageType&quot;: &quot;Sticker&quot;,
+            &quot;imageExtension&quot;: &quot;.png&quot;,
+            &quot;imagepath&quot;: &quot;https://saveyraassets.s3.amazonaws.com/django-s3/cms-content/test-upload/temp/DDSY_DD08&quot;,
+            &quot;imageSizeFormat&quot;: &quot;_80x80,_160x160,_240x240,_360x360,_720x720,_750x750&quot;,
+            &quot;keywords&quot;: &quot;attitude,swag,excuse me,did u call,can i help you,yes,don&#x27;t bother me,not again&quot;
+        },
+        {
+            &quot;subcategory&quot;: &quot;Surprise&quot;,
+            &quot;tokens&quot;: &quot;null&quot;,
+            &quot;paidStickers&quot;: &quot;True&quot;,
+            &quot;expiry&quot;: &quot;03/01/34&quot;,
+            &quot;imageId&quot;: &quot;Wow&quot;,
+            &quot;category&quot;: &quot;Emotions&quot;,
+            &quot;imageType&quot;: &quot;Sticker&quot;,
+            &quot;imageExtension&quot;: &quot;.png&quot;,
+            &quot;imagepath&quot;: &quot;https://saveyraassets.s3.amazonaws.com/django-s3/cms-content/test-upload/temp/Wow_DD10&quot;,
+            &quot;imageSizeFormat&quot;: &quot;_80x80,_160x160,_240x240,_360x360,_720x720,_750x750&quot;,
+            &quot;keywords&quot;: &quot;amazed,wow,exotic,gorgeous,goodness me,amazing,so nice,my my,oh my&quot;
+        },
+        {
+            &quot;subcategory&quot;: &quot;Love&quot;,
+            &quot;tokens&quot;: &quot;null&quot;,
+            &quot;paidStickers&quot;: &quot;True&quot;,
+            &quot;expiry&quot;: &quot;03/01/34&quot;,
+            &quot;imageId&quot;: &quot;Kuchh&quot;,
+            &quot;category&quot;: &quot;Emotions&quot;,
+            &quot;imageType&quot;: &quot;Sticker&quot;,
+            &quot;imageExtension&quot;: &quot;.png&quot;,
+            &quot;imagepath&quot;: &quot;https://saveyraassets.s3.amazonaws.com/django-s3/cms-content/test-upload/temp/Kuchh_to_gadbad_he&quot;,
+            &quot;imageSizeFormat&quot;: &quot;_80x80,_160x160,_240x240,_360x360,_720x720,_750x750&quot;,
+            &quot;keywords&quot;: &quot;mischief,mischievous,am warning you,are you sure,did you do it,gadbar,confusion,really,pakka&quot;
+        },
+        {
+            &quot;subcategory&quot;: &quot;Love&quot;,
+            &quot;tokens&quot;: &quot;null&quot;,
+            &quot;paidStickers&quot;: &quot;True&quot;,
+            &quot;expiry&quot;: &quot;03/01/34&quot;,
+            &quot;imageId&quot;: &quot;Lame&quot;,
+            &quot;category&quot;: &quot;Emotions&quot;,
+            &quot;imageType&quot;: &quot;Sticker&quot;,
+            &quot;imageExtension&quot;: &quot;.png&quot;,
+            &quot;imagepath&quot;: &quot;https://saveyraassets.s3.amazonaws.com/django-s3/cms-content/test-upload/temp/Lame_DD07&quot;,
+            &quot;imageSizeFormat&quot;: &quot;_80x80,_160x160,_240x240,_360x360,_720x720,_750x750&quot;,
+            &quot;keywords&quot;: &quot;loser,lame,annoyed,gimme a break,buzz off,not interested,go away&quot;
+        },
+        {
+            &quot;subcategory&quot;: &quot;Love&quot;,
+            &quot;tokens&quot;: &quot;null&quot;,
+            &quot;paidStickers&quot;: &quot;True&quot;,
+            &quot;expiry&quot;: &quot;03/01/34&quot;,
+            &quot;imageId&quot;: &quot;Arghhh (1)&quot;,
+            &quot;category&quot;: &quot;Emotions&quot;,
+            &quot;imageType&quot;: &quot;Sticker&quot;,
+            &quot;imageExtension&quot;: &quot;.png&quot;,
+            &quot;imagepath&quot;: &quot;https://saveyraassets.s3.amazonaws.com/django-s3/cms-content/test-upload/temp/Arghhh%20%281%29&quot;,
+            &quot;imageSizeFormat&quot;: &quot;_80x80,_160x160,_240x240,_360x360,_720x720,_750x750&quot;,
+            &quot;keywords&quot;: &quot;anger,angry,annoyed,irritated,frustrated,furious,fuming,pissed off,unhappy,upset,disappointed&quot;
+        },
+        {
+            &quot;subcategory&quot;: &quot;Love&quot;,
+            &quot;tokens&quot;: &quot;null&quot;,
+            &quot;paidStickers&quot;: &quot;True&quot;,
+            &quot;expiry&quot;: &quot;03/01/34&quot;,
+            &quot;imageId&quot;: &quot;Mogamboo&quot;,
+            &quot;category&quot;: &quot;Emotions&quot;,
+            &quot;imageType&quot;: &quot;Sticker&quot;,
+            &quot;imageExtension&quot;: &quot;.png&quot;,
+            &quot;imagepath&quot;: &quot;https://saveyraassets.s3.amazonaws.com/django-s3/cms-content/test-upload/temp/Mogamboo_%20khush%20_hua&quot;,
+            &quot;imageSizeFormat&quot;: &quot;_80x80,_160x160,_240x240,_360x360,_720x720,_750x750&quot;,
+            &quot;keywords&quot;: &quot;mogambo,mogambo khush hua,evil,villian,bollywood,movie masti,bollywood magic&quot;
+        }
+    ]
+}
+200
+{&#x27;Server&#x27;: &#x27;nginx/1.15.0&#x27;, &#x27;Date&#x27;: &#x27;Wed, 12 Sep 2018 09:30:02 GMT&#x27;, &#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Content-Length&#x27;: &#x27;4640&#x27;, &#x27;Connection&#x27;: &#x27;keep-alive&#x27;, &#x27;X-Frame-Options&#x27;: &#x27;SAMEORIGIN&#x27;, &#x27;Vary&#x27;: &#x27;Accept, Cookie&#x27;, &#x27;Allow&#x27;: &#x27;GET, HEAD, OPTIONS&#x27;}
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Run.py::Search::test_search</td>
+          <td class="col-duration">1.15</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>03071aeb-d97d-47f5-bb17-49e889b99fdb
+e6af38dd-ee21-4090-92b7-13990b6b2bb7
+{
+    &quot;keyword&quot;: &quot;love&quot;,
+    &quot;applicationId&quot;: &quot;03071aeb-d97d-47f5-bb17-49e889b99fdb&quot;,
+    &quot;stickers&quot;: [
+        {
+            &quot;subcategory&quot;: &quot;Love&quot;,
+            &quot;tokens&quot;: &quot;null&quot;,
+            &quot;paidStickers&quot;: 1,
+            &quot;expiry&quot;: &quot;2034-03-01T00:00:00&quot;,
+            &quot;imageId&quot;: &quot;On&quot;,
+            &quot;keywords&quot;: &quot;girl,ride,riding,scooter,bike,helmet,safety,on the way,just left,reaching,almost there,on my way,road trip,about to reach,be there soon,for the love of riding,love to ride,weekend ride,riding back home,going to office,left for college&quot;,
+            &quot;category&quot;: &quot;Emotions&quot;,
+            &quot;imageExtension&quot;: &quot;.png&quot;,
+            &quot;imagepath&quot;: &quot;https://saveyraassets.s3.amazonaws.com/django-s3/cms-content/test-upload/temp/On_the%20_way&quot;,
+            &quot;imageSizeFormat&quot;: &quot;_80x80,_160x160,_240x240,_360x360,_720x720,_750x750&quot;,
+            &quot;imageType&quot;: &quot;Sticker&quot;
+        },
+        {
+            &quot;subcategory&quot;: &quot;Love&quot;,
+            &quot;tokens&quot;: &quot;null&quot;,
+            &quot;paidStickers&quot;: 1,
+            &quot;expiry&quot;: &quot;2034-03-01T00:00:00&quot;,
+            &quot;imageId&quot;: &quot;Super&quot;,
+            &quot;keywords&quot;: &quot;girl,wink,super,superb,excellent,amazing,done,sure,got it,on point,ok,perfect,awesome,lovely,great&quot;,
+            &quot;category&quot;: &quot;Emotions&quot;,
+            &quot;imageExtension&quot;: &quot;.png&quot;,
+            &quot;imagepath&quot;: &quot;https://saveyraassets.s3.amazonaws.com/django-s3/cms-content/test-upload/temp/Super&quot;,
+            &quot;imageSizeFormat&quot;: &quot;_80x80,_160x160,_240x240,_360x360,_720x720,_750x750&quot;,
+            &quot;imageType&quot;: &quot;Sticker&quot;
+        }
+    ],
+    &quot;taskID&quot;: null,
+    &quot;timeInterval&quot;: &quot;0&quot;,
+    &quot;category&quot;: &quot;Emotions&quot;,
+    &quot;userId&quot;: &quot;NA&quot;
+}
+200
+{&#x27;Server&#x27;: &#x27;nginx/1.15.0&#x27;, &#x27;Date&#x27;: &#x27;Wed, 12 Sep 2018 09:30:03 GMT&#x27;, &#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Content-Length&#x27;: &#x27;1206&#x27;, &#x27;Connection&#x27;: &#x27;keep-alive&#x27;, &#x27;X-Frame-Options&#x27;: &#x27;SAMEORIGIN&#x27;, &#x27;Vary&#x27;: &#x27;Accept, Cookie&#x27;, &#x27;Allow&#x27;: &#x27;GET, HEAD, OPTIONS&#x27;}
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Run.py::SearchAsyncCall::test_searchAsyncCall</td>
+          <td class="col-duration">1.15</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>03071aeb-d97d-47f5-bb17-49e889b99fdb
+b6d9ed5a-351f-4416-a09b-7149583c5a50
+e6af38dd-ee21-4090-92b7-13990b6b2bb7
+{
+    &quot;keyword&quot;: &quot;love&quot;,
+    &quot;applicationId&quot;: &quot;03071aeb-d97d-47f5-bb17-49e889b99fdb&quot;,
+    &quot;stickers&quot;: [],
+    &quot;category&quot;: &quot;Emotions&quot;,
+    &quot;timeInterval&quot;: &quot;9&quot;,
+    &quot;keywords&quot;: &quot;love&quot;,
+    &quot;taskId&quot;: &quot;1c2469e0-e021-4767-a61e-aadea341ecf0&quot;,
+    &quot;userId&quot;: &quot;NA&quot;
+}
+200
+{&#x27;Server&#x27;: &#x27;nginx/1.15.0&#x27;, &#x27;Date&#x27;: &#x27;Wed, 12 Sep 2018 09:30:04 GMT&#x27;, &#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Content-Length&#x27;: &#x27;208&#x27;, &#x27;Connection&#x27;: &#x27;keep-alive&#x27;, &#x27;X-Frame-Options&#x27;: &#x27;SAMEORIGIN&#x27;, &#x27;Vary&#x27;: &#x27;Accept, Cookie&#x27;, &#x27;Allow&#x27;: &#x27;GET, HEAD, OPTIONS&#x27;}
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Run.py::Filters::test_filters</td>
+          <td class="col-duration">1.82</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>03071aeb-d97d-47f5-bb17-49e889b99fdb
+e6af38dd-ee21-4090-92b7-13990b6b2bb7
+{
+    &quot;suggested keywords&quot;: [
+        &quot;console&quot;,
+        &quot;support&quot;,
+        &quot;sympathy&quot;,
+        &quot;peace&quot;,
+        &quot;calm&quot;,
+        &quot;relaxation&quot;
+    ],
+    &quot;top categories&quot;: [
+        &quot;greetings&quot;,
+        &quot;emotions&quot;
+    ]
+}
+200
+{&#x27;Server&#x27;: &#x27;nginx/1.15.0&#x27;, &#x27;Date&#x27;: &#x27;Wed, 12 Sep 2018 09:30:06 GMT&#x27;, &#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Content-Length&#x27;: &#x27;125&#x27;, &#x27;Connection&#x27;: &#x27;keep-alive&#x27;, &#x27;X-Frame-Options&#x27;: &#x27;SAMEORIGIN&#x27;, &#x27;Vary&#x27;: &#x27;Accept, Cookie&#x27;, &#x27;Allow&#x27;: &#x27;GET, HEAD, OPTIONS&#x27;}
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Run.py::Configuration::test_configuration</td>
+          <td class="col-duration">1.12</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>03071aeb-d97d-47f5-bb17-49e889b99fdb
+e6af38dd-ee21-4090-92b7-13990b6b2bb7
+{
+    &quot;configuration&quot;: {
+        &quot;S3_BUCKET_TOKEN&quot;: &quot;&quot;,
+        &quot;instagram&quot;: &quot;https://www.instagram.com/?hl=en&quot;,
+        &quot;androidMinVersion&quot;: &quot;2.2&quot;,
+        &quot;twitter&quot;: &quot;https://twitter.com/login?lang=en&quot;,
+        &quot;CRASHLYTICS_URL&quot;: &quot;&quot;,
+        &quot;facebook&quot;: &quot;https://www.facebook.com/&quot;,
+        &quot;NOTIFICATION_SUPPORT_ENABLED&quot;: &quot;&quot;,
+        &quot;languages&quot;: [
+            &quot;english&quot;,
+            &quot;hindi&quot;
+        ],
+        &quot;URL_FOR_STICKER_SHARE&quot;: &quot;&quot;,
+        &quot;orderlist&quot;: [
+            {
+                &quot;emotions&quot;: [
+                    &quot;Confusion&quot;,
+                    &quot;Disgust&quot;,
+                    &quot;Happy&quot;,
+                    &quot;Love&quot;,
+                    &quot;Sad&quot;,
+                    &quot;Surprise&quot;,
+                    &quot;Horror&quot;,
+                    &quot;Anger&quot;,
+                    &quot;Peace&quot;
+                ]
+            },
+            {
+                &quot;greetings&quot;: [
+                    &quot;Happy&quot;,
+                    &quot;Love&quot;
+                ]
+            },
+            {
+                &quot;Trending&quot;: [
+                    &quot;Happy&quot;
+                ]
+            }
+        ],
+        &quot;NUMBER_OF_RECENT_STICKERS&quot;: &quot;&quot;,
+        &quot;FAQ_URL&quot;: &quot;http://184.72.205.209:8890/saveyra/v1/faq/&quot;,
+        &quot;MAX_STICKERS_DEVICE&quot;: &quot;&quot;,
+        &quot;MAX_AVATARS_DEVICE&quot;: &quot;&quot;,
+        &quot;TERMS_URL&quot;: &quot;http://184.72.205.209:8890/saveyra/v1/terms_and_condition/&quot;,
+        &quot;MANDATORY_UPGRADE&quot;: &quot;1.4&quot;,
+        &quot;androidMaxVersion&quot;: &quot;2.3&quot;,
+        &quot;CLIENT_VERSION&quot;: &quot;2.0&quot;,
+        &quot;AVATAR_SUPPORT_ENABLED&quot;: &quot;&quot;,
+        &quot;AWS-REGION&quot;: &quot;ap-south-1&quot;,
+        &quot;STICKER_SHARING_APPS&quot;: &quot;&quot;,
+        &quot;PROD_SERVER_URL&quot;: &quot;&quot;,
+        &quot;playstore&quot;: &quot;https://play.google.com/store?hl=en&quot;,
+        &quot;SAVE_STICKER_TO_GALLERY&quot;: &quot;&quot;,
+        &quot;AWS-ACCESS-KEY&quot;: &quot;AKIAIQ6BTTY6U76NNTFA&quot;,
+        &quot;applestore&quot;: &quot;https://itunes.apple.com/us/app/apple-store/id375380949?mt=8&quot;,
+        &quot;NUMBER_OF_STICKERS&quot;: &quot;&quot;,
+        &quot;splashscreen&quot;: {
+            &quot;screenCount&quot;: &quot;6&quot;,
+            &quot;splashScreen&quot;: [
+                {
+                    &quot;timings&quot;: [
+                        &quot;00:00:00&quot;,
+                        &quot;00:00:00&quot;
+                    ],
+                    &quot;colorCode&quot;: [
+                        {
+                            &quot;rgb&quot;: [
+                                &quot;11&quot;,
+                                &quot;60&quot;,
+                                &quot;92&quot;
+                            ]
+                        },
+                        {
+                            &quot;rgb&quot;: [
+                                &quot;132&quot;,
+                                &quot;54&quot;,
+                                &quot;130&quot;
+                            ]
+                        }
+                    ],
+                    &quot;id&quot;: &quot;default&quot;
+                },
+                {
+                    &quot;status&quot;: &quot;enabled&quot;,
+                    &quot;timings&quot;: [
+                        &quot;00:00:00&quot;,
+                        &quot;03:59:59&quot;
+                    ],
+                    &quot;colorCode&quot;: [
+                        {
+                            &quot;rgb&quot;: [
+                                &quot;11&quot;,
+                                &quot;60&quot;,
+                                &quot;92&quot;
+                            ]
+                        },
+                        {
+                            &quot;rgb&quot;: [
+                                &quot;132&quot;,
+                                &quot;54&quot;,
+                                &quot;130&quot;
+                            ]
+                        }
+                    ],
+                    &quot;id&quot;: &quot;e-morning&quot;
+                },
+                {
+                    &quot;status&quot;: &quot;enabled&quot;,
+                    &quot;timings&quot;: [
+                        &quot;04:00:00&quot;,
+                        &quot;07:59:59&quot;
+                    ],
+                    &quot;colorCode&quot;: [
+                        {
+                            &quot;rgb&quot;: [
+                                &quot;233&quot;,
+                                &quot;24&quot;,
+                                &quot;45&quot;
+                            ]
+                        },
+                        {
+                            &quot;rgb&quot;: [
+                                &quot;251&quot;,
+                                &quot;155&quot;,
+                                &quot;39&quot;
+                            ]
+                        }
+                    ],
+                    &quot;id&quot;: &quot;morning&quot;
+                },
+                {
+                    &quot;status&quot;: &quot;enabled&quot;,
+                    &quot;timings&quot;: [
+                        &quot;08:00:00&quot;,
+                        &quot;11:59:59&quot;
+                    ],
+                    &quot;colorCode&quot;: [
+                        {
+                            &quot;rgb&quot;: [
+                                &quot;251&quot;,
+                                &quot;155&quot;,
+                                &quot;39&quot;
+                            ]
+                        },
+                        {
+                            &quot;rgb&quot;: [
+                                &quot;227&quot;,
+                                &quot;202&quot;,
+                                &quot;16&quot;
+                            ]
+                        }
+                    ],
+                    &quot;id&quot;: &quot;b-noon&quot;
+                },
+                {
+                    &quot;status&quot;: &quot;enabled&quot;,
+                    &quot;timings&quot;: [
+                        &quot;12:00:00&quot;,
+                        &quot;15:59:59&quot;
+                    ],
+                    &quot;colorCode&quot;: [
+                        {
+                            &quot;rgb&quot;: [
+                                &quot;227&quot;,
+                                &quot;202&quot;,
+                                &quot;16&quot;
+                            ]
+                        },
+                        {
+                            &quot;rgb&quot;: [
+                                &quot;251&quot;,
+                                &quot;155&quot;,
+                                &quot;39&quot;
+                            ]
+                        }
+                    ],
+                    &quot;id&quot;: &quot;a-noon&quot;
+                },
+                {
+                    &quot;status&quot;: &quot;enabled&quot;,
+                    &quot;timings&quot;: [
+                        &quot;16:00:00&quot;,
+                        &quot;19:59:59&quot;
+                    ],
+                    &quot;colorCode&quot;: [
+                        {
+                            &quot;rgb&quot;: [
+                                &quot;233&quot;,
+                                &quot;24&quot;,
+                                &quot;45&quot;
+                            ]
+                        },
+                        {
+                            &quot;rgb&quot;: [
+                                &quot;132&quot;,
+                                &quot;54&quot;,
+                                &quot;130&quot;
+                            ]
+                        }
+                    ],
+                    &quot;id&quot;: &quot;evening&quot;
+                },
+                {
+                    &quot;status&quot;: &quot;enabled&quot;,
+                    &quot;timings&quot;: [
+                        &quot;20:00:00&quot;,
+                        &quot;23:59:59&quot;
+                    ],
+                    &quot;colorCode&quot;: [
+                        {
+                            &quot;rgb&quot;: [
+                                &quot;132&quot;,
+                                &quot;54&quot;,
+                                &quot;130&quot;
+                            ]
+                        },
+                        {
+                            &quot;rgb&quot;: [
+                                &quot;11&quot;,
+                                &quot;60&quot;,
+                                &quot;92&quot;
+                            ]
+                        }
+                    ],
+                    &quot;id&quot;: &quot;night&quot;
+                }
+            ]
+        },
+        &quot;iosMinVersion&quot;: &quot;0.2&quot;,
+        &quot;SERVER_REFRESH_INTERVAL&quot;: &quot;&quot;,
+        &quot;ANALYTICS_URL&quot;: &quot;&quot;,
+        &quot;AWS-SECRET-KEY&quot;: &quot;nAstU4iWeCcL7KCg8OyxVBw8xb0fkHrPkASrMZQa&quot;,
+        &quot;DEV_SERVER_URL&quot;: &quot;&quot;,
+        &quot;OPTIONAL_UPGRADE&quot;: &quot;1.5&quot;,
+        &quot;S3_BUCKET_URL&quot;: &quot;&quot;,
+        &quot;iosMaxVersion&quot;: &quot;2.3&quot;,
+        &quot;QA_SERVER_URL&quot;: &quot;&quot;,
+        &quot;KB_NUMBER_OF_RECENT_STICKERS&quot;: &quot;&quot;
+    }
+}
+200
+{&#x27;Server&#x27;: &#x27;nginx/1.15.0&#x27;, &#x27;Date&#x27;: &#x27;Wed, 12 Sep 2018 09:30:07 GMT&#x27;, &#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Content-Length&#x27;: &#x27;2335&#x27;, &#x27;Connection&#x27;: &#x27;keep-alive&#x27;, &#x27;X-Frame-Options&#x27;: &#x27;SAMEORIGIN&#x27;, &#x27;Vary&#x27;: &#x27;Accept, Cookie&#x27;, &#x27;Allow&#x27;: &#x27;GET, HEAD, OPTIONS&#x27;}
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Run.py::UserSettingsPOST::test_Usersettings_POST</td>
+          <td class="col-duration">1.07</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>03071aeb-d97d-47f5-bb17-49e889b99fdb
+e6af38dd-ee21-4090-92b7-13990b6b2bb7
+{
+    &quot;language&quot;: &quot;&quot;,
+    &quot;latitude&quot;: &quot;&quot;,
+    &quot;longitude&quot;: &quot;&quot;
+}
+200
+{&#x27;Server&#x27;: &#x27;nginx/1.15.0&#x27;, &#x27;Date&#x27;: &#x27;Wed, 12 Sep 2018 09:30:10 GMT&#x27;, &#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Content-Length&#x27;: &#x27;44&#x27;, &#x27;Connection&#x27;: &#x27;keep-alive&#x27;, &#x27;X-Frame-Options&#x27;: &#x27;SAMEORIGIN&#x27;, &#x27;Vary&#x27;: &#x27;Accept, Cookie&#x27;, &#x27;Allow&#x27;: &#x27;GET, POST, HEAD, OPTIONS&#x27;}
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Run.py::UserSettingsGet::test_Usersettings_GET</td>
+          <td class="col-duration">1.15</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>03071aeb-d97d-47f5-bb17-49e889b99fdb
+e6af38dd-ee21-4090-92b7-13990b6b2bb7
+{
+    &quot;language&quot;: &quot;&quot;,
+    &quot;latitude&quot;: &quot;&quot;,
+    &quot;longitude&quot;: &quot;&quot;
+}
+200
+{&#x27;Server&#x27;: &#x27;nginx/1.15.0&#x27;, &#x27;Date&#x27;: &#x27;Wed, 12 Sep 2018 09:30:11 GMT&#x27;, &#x27;Content-Type&#x27;: &#x27;application/json&#x27;, &#x27;Content-Length&#x27;: &#x27;44&#x27;, &#x27;Connection&#x27;: &#x27;keep-alive&#x27;, &#x27;X-Frame-Options&#x27;: &#x27;SAMEORIGIN&#x27;, &#x27;Vary&#x27;: &#x27;Accept, Cookie&#x27;, &#x27;Allow&#x27;: &#x27;GET, POST, HEAD, OPTIONS&#x27;}
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">Run.py::FBLogin::test_FbLogin</td>
+          <td class="col-duration">1.23</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>03071aeb-d97d-47f5-bb17-49e889b99fdb
+e6af38dd-ee21-4090-92b7-13990b6b2bb7
+{
+    &quot;applicationId&quot;: &quot;03071aeb-d97d-47f5-bb17-49e889b99fdb&quot;,
+    &quot;notificationPreferences&quot;: {
+        &quot;contentType&quot;: &quot;&quot;,
+        &quot;status&quot;: &quot;False&quot;,
+        &quot;ringtone&quot;: &quot;&quot;,
+        &quot;frequency&quot;: &quot;&quot;
+    },
+    &quot;userKey&quot;: &quot;921e5735-cb81-4407-96aa-0e3513e28fef&quot;,
+    &quot;status&quot;: 200,
+    &quot;avatarDetails&quot;: &quot;&quot;,
+    &quot;userSettings&quot;: {
+        &quot;language&quot;: &quot;&quot;,
+        &quot;latitude&quot;: &quot;&quot;,
+        &quot;longitude&quot;: &quot;&quot;
+    },
+    &quot;userProfile&quot;: {
+        &quot;email&quot;: &quot;deepthi@silverminegroup.com&quot;,
+        &quot;mobileNumber&quot;: &quot;&quot;,
+        &quot;dob&quot;: &quot;&quot;,
+        &quot;name&quot;: &quot;Deepthi Silvermine&quot;,
+        &quot;language&quot;: &quot;&quot;,
+        &quot;education&quot;: &quot;&quot;,
+        &quot;gender&quot;: &quot;&quot;,
+        &quot;channel&quot;: &quot;Fb&quot;
+    },
+    &quot;sessionKey&quot;: &quot;e6af38dd-ee21-4090-92b7-13990b6b2bb7&quot;
+}
+200
+</div></td></tr></tbody></table></body></html>
